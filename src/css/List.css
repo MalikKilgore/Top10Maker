@@ -1,0 +1,22 @@
+.list-Root {
+    border-radius: 10px;
+    display: grid;
+    height: 95vh;
+    width: 800px;
+    min-width: 400px;
+    max-width: 800px;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(10, 1fr);
+    background-color: white;
+    border: solid black 1px;
+    overflow-y: scroll;
+}
+.list-Header {
+
+}
+.list-Main {
+
+}
+.list-Footer {
+
+}
