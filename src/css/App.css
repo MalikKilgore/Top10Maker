@@ -19,9 +19,6 @@
   color: white;
 }
 .App-main {
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
 }
