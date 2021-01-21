@@ -17,7 +17,6 @@ import {
 } from "@dnd-kit/sortable";
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-//import axios from 'axios'
 
 function List() {
   const [items, setItems] = useState([
@@ -45,18 +44,10 @@ function List() {
   const style = {
     transform: CSS.Translate.toString(transform),
   };
-  /*function postRequest(){
-    return axios.post('https://id.twitch.tv/oauth2/token?client_id=4a1ri5yfip3ikw2rxmpgqjmu51nok7&client_secret=q8306grers4h9uxsv9xtauknh2mx3e&grant_type=client_credentials')
-    .then(function(results){
-      console.log(results)
-    })
-  } 
-  
-  onClick={postRequest} */
+
   return (
     <div className="list-Root">
       <div className="list-Header">
-        <button>Axios Twitch POST request</button>
       </div>
       <div className="list-Main">
         <DndContext

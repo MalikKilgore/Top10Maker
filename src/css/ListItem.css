@@ -4,6 +4,14 @@
     width: 100%;
     margin-top: 2.5px;
     margin-bottom: 2.5px;
+    min-height: 300px;
+}
+.item-Root:active {
+    cursor: grabbing;
+}
+.item-Header {
+    cursor: grab;
+    background-color: rgb(192, 140, 240);
 }
 .item-Main {
     display: grid;
@@ -16,7 +24,7 @@
 }
 .itemImage { 
     grid-area: 1 / 1 / 4 / 3;
-    background-color: khaki; 
+    background-color: khaki;
 }
 .itemTitle { 
     grid-area: 1 / 3 / 3 / 6; 
@@ -25,7 +33,7 @@
 .itemSearch { 
     grid-area: 3 / 3 / 4 / 6; 
     background-color: rgb(140, 195, 240);
-    cursor: pointer;
+    cursor: text;
 }
 .itemReview { 
     grid-area: 4 / 1 / 6 / 6; 
