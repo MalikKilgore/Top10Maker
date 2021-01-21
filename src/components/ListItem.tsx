@@ -27,8 +27,9 @@ function ListItem(props: any) {
     const data = `search "${search}"; fields name;`
     //console.log(data)
 
-    const request = new Request("https://cors-anywhere.herokuapp.com/" +
-      `https://oj9aui1qpi.execute-api.us-west-2.amazonaws.com/production/v4/games`, {
+    const request = new Request(
+      "https://mysterious-beach-94424.herokuapp.com/https://oj9aui1qpi.execute-api.us-west-2.amazonaws.com/production/v4/games", 
+    {
       method: 'POST',
       body: data
     });
