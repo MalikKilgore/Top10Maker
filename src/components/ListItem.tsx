@@ -20,11 +20,11 @@ function ListItem(props: any) {
     transition,
   };
 
-  // FETCH CONFIG BELOW
+// FETCH CONFIG BELOW
   async function gameRequest(event: any) {
     await setSearch(event.target.value)
     //console.log(search)
-    const data = `search "${search}"; fields name;`
+    const data = `search "${search}"; fields name,cover,summary;`
     //console.log(data)
 
     const request = new Request(
@@ -36,13 +36,15 @@ function ListItem(props: any) {
     await fetch(request)
       .then((response) => {
         console.log(response.json());
-        //return response.json()
+        return response.json().then(data => {
+          //map stuff here. Change UI??
+        })
       })
       .catch((err) => {
         console.log(err);
       });
   }
-  // FETCH CONFIG ABOVE
+// FETCH CONFIG ABOVE
 
   return (
     <div className="item-Root" ref={setNodeRef} style={style}>
@@ -50,7 +52,7 @@ function ListItem(props: any) {
         Click here to drag!
       </div>
       <div className="item-Main">
-        <img className="itemImage" alt="Video game cover"></img>
+        <img className="itemImage" alt="Video game cover" src=""></img>
         <h1 className="itemTitle">Game title here</h1>
           <input
             className="itemSearch"
