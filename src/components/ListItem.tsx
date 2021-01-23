@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(1),
       backgroundColor: theme.palette.background.paper,
     },
+    paperChildren: {
+      borderBottom: '1px solid',
+    },
   }),
 );
 
@@ -79,17 +82,22 @@ function ListItem(props: any) {
           ref={searchEl}
         >
         </input>
-        { visible ? <Popper className={classes.paper} 
+        { visible ? <Popper 
+            className={classes.paper} 
             id={'popper'} 
             open={true}
             z-index={100}
             anchorEl={searchEl.current}
             placement="bottom"
             disablePortal={true}>
-              {(results: any) => (
-                  <h1>The game title is {results.name}</h1>
-              )}
-            </Popper> : null}
+
+              {results.map((games: any, index: number) => {
+                return <div>
+                  <h1>{games.name}</h1>
+                  <h2>{games.summary}</h2>
+                  </div>
+              })}
+            </Popper> : null }
         <p className="itemReview">Your review here</p>
       </div>
       <div className="item-Footer">Trash button here</div>
