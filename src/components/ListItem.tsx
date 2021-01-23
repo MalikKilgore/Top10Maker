@@ -1,11 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "../css/ListItem.css";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { type } from "os";
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Popper from '@material-ui/core/Popper';
+
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    paper: {
+      border: '1px solid',
+      padding: theme.spacing(1),
+      backgroundColor: theme.palette.background.paper,
+    },
+  }),
+);
 
 function ListItem(props: any) {
   const [search, setSearch] = useState(``);
+  const [results, setResults] = useState([])
+  const [visible, setVisible] = useState(false);
+
+  const classes = useStyles();
+  const searchEl = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const {
     attributes,
@@ -20,31 +37,31 @@ function ListItem(props: any) {
     transition,
   };
 
-// FETCH CONFIG BELOW
+  // FETCH CONFIG BELOW
   async function gameRequest(event: any) {
     await setSearch(event.target.value)
-    //console.log(search)
     const data = `search "${search}"; fields name,cover,summary;`
-    //console.log(data)
-
     const request = new Request(
-      "https://mysterious-beach-94424.herokuapp.com/https://oj9aui1qpi.execute-api.us-west-2.amazonaws.com/production/v4/games", 
-    {
-      method: 'POST',
-      body: data
-    });
+      "https://mysterious-beach-94424.herokuapp.com/https://oj9aui1qpi.execute-api.us-west-2.amazonaws.com/production/v4/games",
+      {
+        method: 'POST',
+        body: data
+      });
     await fetch(request)
       .then((response) => {
-        console.log(response.json());
-        return response.json().then(data => {
-          //map stuff here. Change UI??
+        response.json().then(data => {
+          // map stuff here. Change UI?? Needs to be per search result (each item in "Promiseresult" array)
+          // index: number
+          setResults(data)
+          console.log(results)
+          setVisible(true)
         })
       })
       .catch((err) => {
         console.log(err);
       });
   }
-// FETCH CONFIG ABOVE
+  // FETCH CONFIG ABOVE
 
   return (
     <div className="item-Root" ref={setNodeRef} style={style}>
@@ -54,12 +71,25 @@ function ListItem(props: any) {
       <div className="item-Main">
         <img className="itemImage" alt="Video game cover" src=""></img>
         <h1 className="itemTitle">Game title here</h1>
-          <input
-            className="itemSearch"
-            placeholder="search games here..."
-            value={search}
-            onChange={gameRequest}
-          ></input>
+        <input
+          className="itemSearch"
+          placeholder="search games here..."
+          value={search}
+          onChange={gameRequest}
+          ref={searchEl}
+        >
+        </input>
+        { visible ? <Popper className={classes.paper} 
+            id={'popper'} 
+            open={true}
+            z-index={100}
+            anchorEl={searchEl.current}
+            placement="bottom"
+            disablePortal={true}>
+              {(results: any) => (
+                  <h1>The game title is {results.name}</h1>
+              )}
+            </Popper> : null}
         <p className="itemReview">Your review here</p>
       </div>
       <div className="item-Footer">Trash button here</div>
