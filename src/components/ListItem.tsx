@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
       gridArea: '1 / 1 / 4 / 2',
       backgroundColor: 'khaki',
       cursor: 'pointer',
+
     },
     paperH1: {
       gridArea: '1 / 2 / 2 / 4',
@@ -43,8 +44,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function ListItem(props: any) {
   const [search, setSearch] = useState(``);
-  const [results, setResults] = useState([])
+  const [results, setResults] = useState<any[]>([])
   const [visible, setVisible] = useState(false);
+  const [gameItem, setGame] = useState({
+    cover: undefined,
+    title: undefined,
+    description: undefined,
+  })
 
   const classes = useStyles();
   const searchEl = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -63,12 +69,24 @@ function ListItem(props: any) {
     transition,
   };
   // DndKit
-  
-  function handleSearch(){
+
+  function handleSearch() {
     //Will set whether Popper is visible or not using anchorEl state.
   }
+  function selectGame(event: any) {
+    // Once game is clicked, it will populate to the listItem.
+    let index = parseInt(event.currentTarget.id)
+    let game = results[index]
+    console.log(index)
+    
+    setGame({
+     cover: game.cover.url,
+     title: game.name,
+     description: game.summary,
+    })
+  }
 
-  // FETCH CONFIG BELOW
+// FETCH CONFIG BELOW
   async function gameRequest(event: any) {
     await setSearch(event.target.value)
     const data = `search "${search}"; fields id,name,cover.url,summary;`
@@ -90,7 +108,7 @@ function ListItem(props: any) {
         console.log(err);
       });
   }
-  // FETCH CONFIG ABOVE
+// FETCH CONFIG ABOVE
 
   return (
     <div className="item-Root" ref={setNodeRef} style={style}>
@@ -98,8 +116,8 @@ function ListItem(props: any) {
         Click here to drag!
       </div>
       <div className="item-Main">
-        <img className="itemImage" alt="Video game cover" src=""></img>
-        <h1 className="itemTitle">Game title here</h1>
+        <img className="itemImage" alt="Video game cover" src={gameItem.cover}></img>
+        <h1 className="itemTitle" placeholder="The title will go here...">{gameItem.title}</h1>
         <input
           className="itemSearch"
           placeholder="search for games here..."
@@ -108,22 +126,26 @@ function ListItem(props: any) {
           ref={searchEl}
         >
         </input>
-        { visible ? <Popper 
-            className={classes.paper} 
-            id={'popper'} 
-            open={true}
-            z-index={100}
-            anchorEl={searchEl.current}
-            placement="bottom"
-            disablePortal={true}>
-              {results.map((games: any, index: number) => {
-                return <div className={classes.paperChildren} key={index}>
-                  <img className={classes.paperImg} alt="Video game cover" src={games.cover.url}></img>
-                  <h1 className={classes.paperH1}>{games.name}</h1>
-                  <h2 className={classes.paperH2}>{games.summary}</h2>
-                  </div>
-              })}
-            </Popper> : null }
+        {visible ? <Popper
+          className={classes.paper}
+          id={'popper'}
+          open={true}
+          z-index={100}
+          anchorEl={searchEl.current}
+          placement="bottom"
+          disablePortal={true}>
+          {results.map((games: any, index: number) => {
+            return <div className={classes.paperChildren} id={`${index}`} key={index} onClick={selectGame}>
+              <img
+                className={classes.paperImg}
+                alt="Video game cover"
+                src={games.cover.url}
+              ></img>
+              <h1 className={classes.paperH1}>{games.name}</h1>
+              <h2 className={classes.paperH2}>{games.summary}</h2>
+            </div>
+          })}
+        </Popper> : null}
         <p className="itemReview">Your review here</p>
       </div>
       <div className="item-Footer">Trash button here</div>

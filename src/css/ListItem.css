@@ -25,6 +25,8 @@
 .itemImage { 
     grid-area: 1 / 1 / 4 / 3;
     background-color: khaki;
+    height: 100%;
+    width: 100%;
 }
 .itemTitle { 
     grid-area: 1 / 3 / 3 / 6; 
