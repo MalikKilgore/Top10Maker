@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
       gridArea: '1 / 1 / 4 / 2',
       backgroundColor: 'khaki',
       cursor: 'pointer',
-
+      height: '100%',
+      width: '100%'
     },
     paperH1: {
       gridArea: '1 / 2 / 2 / 4',
@@ -71,7 +72,7 @@ function ListItem(props: any) {
   // DndKit
 
   function handleSearch() {
-    //Will set whether Popper is visible or not using anchorEl state.
+    setVisible(false)
   }
   function selectGame(event: any) {
     // Once game is clicked, it will populate to the listItem.
@@ -84,6 +85,7 @@ function ListItem(props: any) {
      title: game.name,
      description: game.summary,
     })
+    setVisible(false)
   }
 
 // FETCH CONFIG BELOW
@@ -117,7 +119,10 @@ function ListItem(props: any) {
       </div>
       <div className="item-Main">
         <img className="itemImage" alt="Video game cover" src={gameItem.cover}></img>
-        <h1 className="itemTitle" placeholder="The title will go here...">{gameItem.title}</h1>
+        <h1 className="itemTitle" placeholder="The title will go here...">
+          {gameItem.title} <br></br>
+          {gameItem.description}
+          </h1>
         <input
           className="itemSearch"
           placeholder="search for games here..."
@@ -129,11 +134,13 @@ function ListItem(props: any) {
         {visible ? <Popper
           className={classes.paper}
           id={'popper'}
-          open={true}
+          open={visible}
           z-index={100}
           anchorEl={searchEl.current}
           placement="bottom"
-          disablePortal={true}>
+          disablePortal={true}
+          >
+            <button onClick={handleSearch}>Close Results</button>
           {results.map((games: any, index: number) => {
             return <div className={classes.paperChildren} id={`${index}`} key={index} onClick={selectGame}>
               <img
@@ -146,7 +153,7 @@ function ListItem(props: any) {
             </div>
           })}
         </Popper> : null}
-        <p className="itemReview">Your review here</p>
+        <input className="itemReview" placeholder="Type out your thoughts on this game!"></input>
       </div>
       <div className="item-Footer">Trash button here</div>
     </div>
