@@ -35,8 +35,10 @@
     background-color: rgb(143, 240, 140);
     overflow-y: scroll;
 }
-.itemSearch { 
+.itemSearch {
     grid-area: 1 / 4 / 2 / 8;
+    height: 100%;
+    width: 100%;
     background-color: rgb(140, 195, 240);
     cursor: text;
 }

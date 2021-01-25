@@ -17,19 +17,11 @@ import {
 } from "@dnd-kit/sortable";
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
+import plusCircle from '../assets/plus-circle-duotone.png'
 
 function List() {
   const [items, setItems] = useState([
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
+    "0",
   ]);
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -48,6 +40,12 @@ function List() {
   return (
     <div className="list-Root">
       <div className="list-Header">
+      <h1>Add Game</h1>
+      <img
+          className="createBtn"
+          alt="Trash button here"
+          src={plusCircle}
+          onClick={addGame}></img>
       </div>
       <div className="list-Main">
         <DndContext
@@ -76,6 +74,20 @@ function List() {
         return arrayMove(items, oldIndex, newIndex);
       });
     }
+  }
+
+  function addGame(){
+    const last = parseInt(items[items.length - 1])
+    console.log(last)
+    const add = last + 1
+    console.log(add)
+    if (add > 9) {
+      console.log('Max amount of games reached')
+      return
+    } else {
+      setItems(items.concat(`${add}`))
+    }
+    
   }
 }
 

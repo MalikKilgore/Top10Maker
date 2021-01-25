@@ -4,6 +4,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
+import trash from '../assets/trash-duotone.png'
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -39,6 +40,11 @@ const useStyles = makeStyles((theme: Theme) =>
       gridArea: '2 / 2 / 4 / 4',
       overflowY: 'scroll',
       backgroundColor: 'rgb(140, 195, 240)',
+    },
+    trash: {
+      height: '4em',
+      width: '4em',
+      cursor: 'pointer',
     }
   }),
 );
@@ -79,17 +85,18 @@ function ListItem(props: any) {
     let index = parseInt(event.currentTarget.id)
     let game = results[index]
     console.log(index)
-    
+
     setGame({
-     cover: game.cover.url,
-     title: game.name,
-     description: game.summary,
+      cover: game.cover.url,
+      title: game.name,
+      description: game.summary,
     })
     setVisible(false)
   }
 
-// FETCH CONFIG BELOW
+  // FETCH CONFIG BELOW
   async function gameRequest(event: any) {
+    event.preventDefault();
     await setSearch(event.target.value)
     const data = `search "${search}"; fields id,name,cover.url,summary;`
     const request = new Request(
@@ -110,7 +117,7 @@ function ListItem(props: any) {
         console.log(err);
       });
   }
-// FETCH CONFIG ABOVE
+  // FETCH CONFIG ABOVE
 
   return (
     <div className="item-Root" ref={setNodeRef} style={style}>
@@ -122,13 +129,13 @@ function ListItem(props: any) {
         <h1 className="itemTitle" placeholder="The title will go here...">
           {gameItem.title} <br></br>
           {gameItem.description}
-          </h1>
+        </h1>
         <input
           className="itemSearch"
           placeholder="search for games here..."
           value={search}
-          onChange={gameRequest}
           ref={searchEl}
+          onChange={gameRequest}
         >
         </input>
         {visible ? <Popper
@@ -139,8 +146,8 @@ function ListItem(props: any) {
           anchorEl={searchEl.current}
           placement="bottom"
           disablePortal={true}
-          >
-            <button onClick={handleSearch}>Close Results</button>
+        >
+          <button onClick={handleSearch}>Close Results</button>
           {results.map((games: any, index: number) => {
             return <div className={classes.paperChildren} id={`${index}`} key={index} onClick={selectGame}>
               <img
@@ -155,7 +162,12 @@ function ListItem(props: any) {
         </Popper> : null}
         <input className="itemReview" placeholder="Type out your thoughts on this game!"></input>
       </div>
-      <div className="item-Footer">Trash button here</div>
+      <div className="item-Footer">
+        <img
+          className={classes.trash}
+          alt="Trash button here"
+          src={trash}></img>
+      </div>
     </div>
   );
 }
