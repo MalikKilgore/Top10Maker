@@ -118,6 +118,10 @@ function ListItem(props: any) {
       });
   }
   // FETCH CONFIG ABOVE
+  function parentMethod(){
+    const id = props.id
+    props.dltGame(id)
+  }
 
   return (
     <div className="item-Root" ref={setNodeRef} style={style}>
@@ -166,7 +170,8 @@ function ListItem(props: any) {
         <img
           className={classes.trash}
           alt="Trash button here"
-          src={trash}></img>
+          src={trash}
+          onClick={parentMethod}></img>
       </div>
     </div>
   );

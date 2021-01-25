@@ -22,6 +22,7 @@ import plusCircle from '../assets/plus-circle-duotone.png'
 function List() {
   const [items, setItems] = useState([
     "0",
+    "1",
   ]);
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -40,8 +41,8 @@ function List() {
   return (
     <div className="list-Root">
       <div className="list-Header">
-      <h1>Add Game</h1>
-      <img
+        <h1>Add Game</h1>
+        <img
           className="createBtn"
           alt="Trash button here"
           src={plusCircle}
@@ -55,7 +56,7 @@ function List() {
         >
           <SortableContext items={items} strategy={verticalListSortingStrategy}>
             {items.map((id) => (
-              <ListItem key={id} id={id} />
+              <ListItem key={id} id={id} dltGame={dltGame} />
             ))}
           </SortableContext>
         </DndContext>
@@ -76,18 +77,26 @@ function List() {
     }
   }
 
-  function addGame(){
+  function addGame() {
     const last = parseInt(items[items.length - 1])
-    console.log(last)
     const add = last + 1
-    console.log(add)
     if (add > 9) {
       console.log('Max amount of games reached')
       return
     } else {
       setItems(items.concat(`${add}`))
     }
-    
+  }
+
+  function dltGame(id: string) {
+    const index = id;
+    const length = items.length
+    if (length <= 2) {
+      console.log('Cannot remove anymore games')
+      return
+    } else {
+      setItems(items.filter(item => item != index))
+    }
   }
 }
 
