@@ -122,6 +122,10 @@ function ListItem(props: any) {
     const id = props.id
     props.dltGame(id)
   }
+  function onChange(){
+    //Will be used to prevent searching while typing.
+    //Later add form and submit function. Use loading spinner while fetching results.
+  }
 
   return (
     <div className="item-Root" ref={setNodeRef} style={style}>
