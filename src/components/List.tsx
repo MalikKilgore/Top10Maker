@@ -18,12 +18,16 @@ import {
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import plusCircle from '../assets/plus-circle-duotone.png'
+//import { useSelector, useDispatch, MapDispatchToProps, MapStateToProps, connect } from 'react-redux'
+//import store, {addGame, Game} from '../store'
 
 function List() {
   const [items, setItems] = useState([
     "0",
     "1",
   ]);
+
+//DnDKit
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -37,6 +41,18 @@ function List() {
   const style = {
     transform: CSS.Translate.toString(transform),
   };
+  function handleDragEnd(event: any) {
+    const { active, over } = event;
+
+    if (active.id !== over.id) {
+      setItems((items) => {
+        const oldIndex = items.indexOf(active.id);
+        const newIndex = items.indexOf(over.id);
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  }
+//DnDKit
 
   return (
     <div className="list-Root">
@@ -44,9 +60,9 @@ function List() {
         <h1>Add Game</h1>
         <img
           className="createBtn"
-          alt="Trash button here"
+          alt="Create new game listing button. Icon is a + with a circle around it."
           src={plusCircle}
-          onClick={addGame}></img>
+          onClick={addIndex}></img>
       </div>
       <div className="list-Main">
         <DndContext
@@ -56,7 +72,7 @@ function List() {
         >
           <SortableContext items={items} strategy={verticalListSortingStrategy}>
             {items.map((id) => (
-              <ListItem key={id} id={id} dltGame={dltGame} />
+              <ListItem key={id} id={id} dltGame={dltIndex} />
             ))}
           </SortableContext>
         </DndContext>
@@ -64,20 +80,8 @@ function List() {
       <div className="list-Footer"></div>
     </div>
   );
-  function handleDragEnd(event: any) {
-    const { active, over } = event;
 
-    if (active.id !== over.id) {
-      setItems((items) => {
-        const oldIndex = items.indexOf(active.id);
-        const newIndex = items.indexOf(over.id);
-
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  }
-
-  function addGame() {
+  function addIndex() {
     const last = parseInt(items[items.length - 1])
     const add = last + 1
     if (add > 9) {
@@ -88,7 +92,7 @@ function List() {
     }
   }
 
-  function dltGame(id: string) {
+  function dltIndex(id: string) {
     const index = id;
     const length = items.length
     if (length <= 2) {

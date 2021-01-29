@@ -5,7 +5,8 @@ import { CSS } from "@dnd-kit/utilities";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import trash from '../assets/trash-duotone.png'
-
+//import store, {addGame} from '../store'
+//import connect, { connectAdvanced, useDispatch } from 'react-redux'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,6 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function ListItem(props: any) {
+  //state
   const [search, setSearch] = useState(``);
   const [results, setResults] = useState<any[]>([])
   const [visible, setVisible] = useState(false);
@@ -58,6 +60,7 @@ function ListItem(props: any) {
     title: undefined,
     description: undefined,
   })
+  //state
 
   const classes = useStyles();
   const searchEl = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -84,8 +87,6 @@ function ListItem(props: any) {
     // Once game is clicked, it will populate to the listItem.
     let index = parseInt(event.currentTarget.id)
     let game = results[index]
-    console.log(index)
-
     setGame({
       cover: game.cover.url,
       title: game.name,
@@ -118,11 +119,11 @@ function ListItem(props: any) {
       });
   }
   // FETCH CONFIG ABOVE
-  function parentMethod(){
+  function parentMethod() {
     const id = props.id
     props.dltGame(id)
   }
-  function onChange(){
+  function onChange() {
     //Will be used to prevent searching while typing.
     //Later add form and submit function. Use loading spinner while fetching results.
   }
@@ -181,4 +182,4 @@ function ListItem(props: any) {
   );
 }
 
-export default ListItem;
+export default ListItem
