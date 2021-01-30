@@ -93,6 +93,7 @@ function ListItem(props: any) {
   }
   function selectGame(event: any) {
     // Once game is clicked, it will populate to the listItem.
+    const id = props.id
     let index: number = parseInt(event.currentTarget.id)
     let game = results[index]
     displayGame({
@@ -109,7 +110,8 @@ function ListItem(props: any) {
       title: game.name,
       description: game.summary,
     }
-    const gameIndex: number = parseInt(props.id)
+    
+    const gameIndex: number = props.items.indexOf(id)
     props.addGame(gameIndex, propGame)
   }
 
