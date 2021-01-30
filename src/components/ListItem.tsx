@@ -8,6 +8,13 @@ import trash from '../assets/trash-duotone.png'
 //import store, {addGame} from '../store'
 //import connect, { connectAdvanced, useDispatch } from 'react-redux'
 
+type Game = {
+  id: number,
+  cover: string,
+  title: string,
+  description: string,
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
@@ -55,7 +62,8 @@ function ListItem(props: any) {
   const [search, setSearch] = useState(``);
   const [results, setResults] = useState<any[]>([])
   const [visible, setVisible] = useState(false);
-  const [gameItem, setGame] = useState({
+  const [gameItem, displayGame] = useState({
+    id: undefined,
     cover: undefined,
     title: undefined,
     description: undefined,
@@ -85,14 +93,24 @@ function ListItem(props: any) {
   }
   function selectGame(event: any) {
     // Once game is clicked, it will populate to the listItem.
-    let index = parseInt(event.currentTarget.id)
+    let index: number = parseInt(event.currentTarget.id)
     let game = results[index]
-    setGame({
+    displayGame({
+      id: game.id,
       cover: game.cover.url,
       title: game.name,
       description: game.summary,
     })
     setVisible(false)
+
+    const propGame: Game = { 
+      id: game.id,
+      cover: game.cover.url,
+      title: game.name,
+      description: game.summary,
+    }
+    const gameIndex: number = parseInt(props.id)
+    props.addGame(gameIndex, propGame)
   }
 
   // FETCH CONFIG BELOW
@@ -121,7 +139,7 @@ function ListItem(props: any) {
   // FETCH CONFIG ABOVE
   function parentMethod() {
     const id = props.id
-    props.dltGame(id)
+    props.dltIndex(id)
   }
   function onChange() {
     //Will be used to prevent searching while typing.

@@ -21,10 +21,9 @@ import plusCircle from '../assets/plus-circle-duotone.png'
 //import { useSelector, useDispatch, MapDispatchToProps, MapStateToProps, connect } from 'react-redux'
 //import store, {addGame, Game} from '../store'
 
-function List() {
+function List(props: any) {
   const [items, setItems] = useState([
     "0",
-    "1",
   ]);
 
 //DnDKit
@@ -72,7 +71,7 @@ function List() {
         >
           <SortableContext items={items} strategy={verticalListSortingStrategy}>
             {items.map((id) => (
-              <ListItem key={id} id={id} dltGame={dltIndex} />
+              <ListItem key={id} id={id} dltIndex={dltIndex} addGame={props.addGame} />
             ))}
           </SortableContext>
         </DndContext>
@@ -95,7 +94,7 @@ function List() {
   function dltIndex(id: string) {
     const index = id;
     const length = items.length
-    if (length <= 2) {
+    if (length <= 1) {
       console.log('Cannot remove anymore games')
       return
     } else {
