@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import List from './components/List'
 import Social from './components/Social'
 import Share from './components/Share'
 import './css/App.css';
+import {arrayMove} from "@dnd-kit/sortable";
 
 type Game = {
   id: number,
@@ -10,13 +11,6 @@ type Game = {
   title: string,
   description: string,
 }
-
-// interface GameList {
-//   id: number,
-//   cover: string,
-//   title: string,
-//   description: string,
-// }
 
 function App(props: any) {
   const [gameList, setGames] = useState([
@@ -32,6 +26,13 @@ function App(props: any) {
     {},
   ]);
 
+  function handleDragEndGlobal(oldGlobalIndex: number, newGlobalIndex: number){
+    let newArr = [...gameList]
+    newArr = arrayMove(newArr, oldGlobalIndex, newGlobalIndex)
+    setGames(newArr)
+    console.log(`JUST MOVED GAMES${gameList}`)
+  }
+
   function addGame(gameIndex: number, propGame: Game){
     console.log(`the index is ${gameIndex}`)
     let newArr = [...gameList]
@@ -40,7 +41,7 @@ function App(props: any) {
     setGames(newArr)
     console.log(gameList)
   }
-  function dltGame(index: number){
+  function dltGame(gameIndex: number){
 
   }
 
@@ -53,7 +54,7 @@ function App(props: any) {
       </header>
       <main className="App-main">
         <Social></Social>
-        <List addGame={addGame}></List>
+        <List addGame={addGame} gameList={gameList} handleDragEndGlobal={handleDragEndGlobal}></List>
         <Share></Share>
       </main>
     </div>
