@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../css/List.css";
 import ListItem from "./ListItem";
 import {
@@ -13,7 +13,6 @@ import {
   arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
   rectSwappingStrategy,
   useSortable
 } from "@dnd-kit/sortable";
@@ -60,8 +59,8 @@ function List(props: any) {
 
     if (active.id !== over.id) {
       setItems((items) => {
-         const oldIndex = items.indexOf(active.id);
-         const newIndex = items.indexOf(over.id);
+         const oldIndex: number = items.indexOf(active.id);
+         const newIndex: number = items.indexOf(over.id);
         return arrayMove(items, oldIndex, newIndex);
       });
     }
@@ -110,13 +109,14 @@ function List(props: any) {
   }
 
   function dltIndex(id: string) {
-    const index = id;
+    const index = items[parseInt(id)];
     const length = items.length
     if (length <= 1) {
       console.log('Cannot remove anymore games')
       return
     } else {
-      setItems(items.filter(item => item != index))
+      setItems(items.filter(item => item != id))
+      props.dltGame(index)
     }
   }
 }

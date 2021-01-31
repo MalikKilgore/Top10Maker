@@ -34,15 +34,15 @@ function App(props: any) {
   }
 
   function addGame(gameIndex: number, propGame: Game){
-    console.log(`the index is ${gameIndex}`)
     let newArr = [...gameList]
     newArr[gameIndex] = propGame
-
     setGames(newArr)
-    console.log(gameList)
   }
-  function dltGame(gameIndex: number){
 
+  function dltGame(gameIndex: number){
+    let newArr = [...gameList]
+    newArr[gameIndex] = {}
+    setGames(newArr)
   }
 
   return (
@@ -54,7 +54,8 @@ function App(props: any) {
       </header>
       <main className="App-main">
         <Social></Social>
-        <List addGame={addGame} gameList={gameList} handleDragEndGlobal={handleDragEndGlobal}></List>
+        <List addGame={addGame} dltGame={dltGame} gameList={gameList} 
+        handleDragEndGlobal={handleDragEndGlobal}></List>
         <Share></Share>
       </main>
     </div>
