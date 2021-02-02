@@ -26,6 +26,13 @@ function App(props: any) {
     {},
   ]);
 
+  function createList(){
+    let newArr = [...gameList]
+    let json = JSON.stringify(newArr);
+    console.log(json)
+    //Push to MongoDB
+  }
+
   function handleDragEndGlobal(oldGlobalIndex: number, newGlobalIndex: number){
     let newArr = [...gameList]
     newArr = arrayMove(newArr, oldGlobalIndex, newGlobalIndex)
@@ -56,7 +63,7 @@ function App(props: any) {
         <Social></Social>
         <List addGame={addGame} dltGame={dltGame} gameList={gameList} 
         handleDragEndGlobal={handleDragEndGlobal}></List>
-        <Share></Share>
+        <Share createList={createList}></Share>
       </main>
     </div>
   );
