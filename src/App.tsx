@@ -4,6 +4,7 @@ import Social from './components/Social'
 import Share from './components/SharedList'
 import './css/App.css';
 import {arrayMove} from "@dnd-kit/sortable";
+import {db, ListModel, newList, insertList} from './server'
 
 type Game = {
   id: number,
@@ -34,7 +35,8 @@ function App(props: any) {
     let newArr = [...gameList]
     let json = JSON.stringify(newArr);
     console.log(json)
-    //Push to MongoDB
+    console.log('TESTING MONGO CONNECTION')
+    insertList()
   }
 
   function handleDragEndGlobal(oldGlobalIndex: number, newGlobalIndex: number){

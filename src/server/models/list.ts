@@ -11,4 +11,5 @@ let listPost = new listSchema({
     url: String
 });
 
-let Post = module.exports = mongoose.model("listPost", listPost);
+let List = module.exports = mongoose.model("listPost", listPost);
+export default List
