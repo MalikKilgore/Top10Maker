@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import List from './components/List'
 import Social from './components/Social'
-import Share from './components/Share'
+import Share from './components/SharedList'
 import './css/App.css';
 import {arrayMove} from "@dnd-kit/sortable";
 
@@ -10,6 +10,10 @@ type Game = {
   cover: string,
   title: string,
   description: string,
+  // user: {
+  //   author: string,
+  //   review: string
+  // }
 }
 
 function App(props: any) {
