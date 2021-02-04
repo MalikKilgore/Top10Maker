@@ -36,7 +36,7 @@ function App(props: any) {
     let json = JSON.stringify(newArr);
     console.log(json)
     console.log('TESTING MONGO CONNECTION')
-    insertList()
+    return insertList
   }
 
   function handleDragEndGlobal(oldGlobalIndex: number, newGlobalIndex: number){

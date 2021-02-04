@@ -1,26 +1,7 @@
-//const express = require('express')
-const mongoose = require('mongoose')
-//const app = express();
+import mongoose from "mongoose"
 const path = require('path');
 const PORT = 3000;
 const ObjectID = require('mongodb').ObjectID;
-
-
-/* 
-
-  EXPRESS
-  
-*/
-
-// app.use(express.json())
-// app.use(express.static(path.join(__dirname, 'build')));
-// app.get('/', function (req:any, res:any) {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
-// app.listen(PORT, function() {
-//   console.log("Server is running on Port: " + PORT);
-// });
-
 
 /* 
 
@@ -54,8 +35,6 @@ const newList = new ListModel({
   list: ['This', 'be', 'a', 'list'],
   url: 'URL will go here eventually'});
   
-let insertList = db.collection('finished').insert(newList);
+let insertList = db.collection('finished').insertOne(newList);
 
-
-   
 export {db, ListModel, newList, insertList}
