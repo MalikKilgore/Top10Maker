@@ -1,6 +1,6 @@
-const express = require('express')
+//const express = require('express')
 const mongoose = require('mongoose')
-const app = express();
+//const app = express();
 const path = require('path');
 const PORT = 3000;
 const ObjectID = require('mongodb').ObjectID;
@@ -11,15 +11,15 @@ const ObjectID = require('mongodb').ObjectID;
   EXPRESS
   
 */
-app.use(express.json())
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/', function (req:any, res:any) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-//Listen for app on port
-app.listen(PORT, function() {
-  console.log("Server is running on Port: " + PORT);
-});
+
+// app.use(express.json())
+// app.use(express.static(path.join(__dirname, 'build')));
+// app.get('/', function (req:any, res:any) {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
+// app.listen(PORT, function() {
+//   console.log("Server is running on Port: " + PORT);
+// });
 
 
 /* 
