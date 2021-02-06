@@ -1,11 +1,11 @@
-import express from 'express'
-import mongoose from "mongoose"
-import mongodb from 'mongodb'
+//import mongodb from 'mongodb'
+var mongoose = require('mongoose')
+const express = require('express')
+const app = express();
 const bodyParser = require('body-parser')
 const path = require('path');
 const PORT = 3001;
 const ObjectID = require('mongodb').ObjectID;
-const app = express();
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -19,11 +19,8 @@ app.get('/', function (req, res) {
   MONGODB/MONGOOSE 
 
 */
-// Connect to MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
-  useNewUrlParser: true
-});
 const db = mongoose.connection;
+
 
 // Check MongoDB connection
 db.once("open", function() {
@@ -31,7 +28,7 @@ db.once("open", function() {
 });
 
 // Check for db errors
-db.on('error', function(err:any){
+db.on('error', function(err){
   console.log(err)
 })
 
@@ -46,6 +43,11 @@ const newList = new ListModel({
   list: ['This', 'be', 'a', 'list'],
   url: 'URL will go here eventually'});
   
-let insertList = db.collection('finished').insertOne(newList);
+// Connect to MongoDB
+mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(db.collection('finished').insertOne(newList));
 
-export {db, ListModel, newList, insertList}
+
+//export {db, ListModel, newList, insertList}

@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-
+//import mongodb from 'mongodb'
+var mongoose = require('mongoose')
 const listSchema = mongoose.Schema;
 
 let listPost = new listSchema({
@@ -12,4 +12,3 @@ let listPost = new listSchema({
 });
 
 let List = module.exports = mongoose.model("listPost", listPost);
-export default List
