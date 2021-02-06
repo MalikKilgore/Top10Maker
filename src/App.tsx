@@ -37,7 +37,7 @@ function App(props: any) {
     let json = JSON.stringify(newArr);
     console.log(json)
     console.log('TESTING MONGO CONNECTION')
-    axios.post('http://localhost:3001', json)
+    axios.post('192.53.164.225:3001', json)
   }
 
   function handleDragEndGlobal(oldGlobalIndex: number, newGlobalIndex: number){

@@ -13,7 +13,7 @@ app.get('/', function (req, res) {
 app.listen(PORT, function(){
   console.log('Server started on port: ' + PORT)
 })
-app.post('http://localhost:3001', function(req, res){
+app.post(`192.53.164.225:${PORT}`, function(req, res){
   console.log('axios post request received')
 }) //https://youtu.be/xrxDk1zLKdc?t=244
 
