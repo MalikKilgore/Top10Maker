@@ -1,5 +1,4 @@
-//import mongodb from 'mongodb'
-var mongoose = require('mongoose')
+const mongoose = require('mongoose')
 const listSchema = mongoose.Schema;
 
 let listPost = new listSchema({

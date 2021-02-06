@@ -4,6 +4,7 @@ import Social from './components/Social'
 import Share from './components/SharedList'
 import './css/App.css';
 import {arrayMove} from "@dnd-kit/sortable";
+import axios from 'axios'
 
 type Game = {
   id: number,
@@ -31,10 +32,12 @@ function App(props: any) {
   ]);
 
   function createList(){
+    
     let newArr = [...gameList]
     let json = JSON.stringify(newArr);
     console.log(json)
     console.log('TESTING MONGO CONNECTION')
+    axios.post('http://localhost:3001', json)
   }
 
   function handleDragEndGlobal(oldGlobalIndex: number, newGlobalIndex: number){

@@ -1,5 +1,4 @@
-//import mongodb from 'mongodb'
-var mongoose = require('mongoose')
+const mongoose = require('mongoose')
 const express = require('express')
 const app = express();
 const bodyParser = require('body-parser')
@@ -8,11 +7,15 @@ const PORT = 3001;
 const ObjectID = require('mongodb').ObjectID;
 
 app.use(express.static(path.join(__dirname, 'build')));
-
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-
+app.listen(PORT, function(){
+  console.log('Server started on port: ' + PORT)
+})
+app.post('http://localhost:3001', function(req, res){
+  console.log('axios post request received')
+}) //https://youtu.be/xrxDk1zLKdc?t=244
 
 /* 
 
@@ -20,7 +23,6 @@ app.get('/', function (req, res) {
 
 */
 const db = mongoose.connection;
-
 
 // Check MongoDB connection
 db.once("open", function() {
@@ -44,10 +46,10 @@ const newList = new ListModel({
   url: 'URL will go here eventually'});
   
 // Connect to MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(db.collection('finished').insertOne(newList));
+// mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// }).then(db.collection('finished').insertOne(newList));
 
 
 //export {db, ListModel, newList, insertList}
