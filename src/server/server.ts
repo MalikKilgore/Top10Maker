@@ -1,7 +1,18 @@
+import express from 'express'
 import mongoose from "mongoose"
+import mongodb from 'mongodb'
+const bodyParser = require('body-parser')
 const path = require('path');
-const PORT = 3000;
+const PORT = 3001;
 const ObjectID = require('mongodb').ObjectID;
+const app = express();
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 
 /* 
 
