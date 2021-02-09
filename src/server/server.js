@@ -1,11 +1,13 @@
 const mongoose = require('mongoose')
 const express = require('express')
+const cors = require("cors");
 const app = express();
 const bodyParser = require('body-parser')
 const path = require('path');
 const PORT = 3001;
 const ObjectID = require('mongodb').ObjectID;
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
@@ -13,8 +15,10 @@ app.get('/', function (req, res) {
 app.listen(PORT, function(){
   console.log('Server started on port: ' + PORT)
 })
-app.post(`192.53.164.225:${PORT}`, function(req, res){
-  console.log('axios post request received')
+app.post(`http://localhost:${PORT}`, function(req, res){
+  console.log('axios post request received on server!')
+  let list = new ListModel
+  list.title = req.body.title
 }) //https://youtu.be/xrxDk1zLKdc?t=244
 
 /* 
