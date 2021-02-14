@@ -1,31 +1,43 @@
 const mongoose = require('mongoose')
 const express = require('express')
-const cors = require("cors");
 const app = express();
 const bodyParser = require('body-parser')
-const path = require('path');
+//const path = require('path');
 const PORT = 3001;
 const ObjectID = require('mongodb').ObjectID;
+let ListModel = require("./models/list");
 
-app.use(cors());
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+//app.use(express.static(path.join(__dirname, 'build')));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
+
+app.post("/create",(req, res) => {
+  console.log("Request received")
+  db.collection('finished').insertOne(new ListModel({ 
+    _id: new ObjectID(),
+    title: req.body.title, 
+    user: req.body.user,
+    date: new Date(),
+    likes: 0,
+    list: req.body.list,
+    url: req.body.url
+  }));
+  console.log(req.body)
+  res.end("Success")  
+})
+
 app.listen(PORT, function(){
   console.log('Server started on port: ' + PORT)
 })
-app.post(`http://localhost:${PORT}`, function(req, res){
-  console.log('axios post request received on server!')
-  let list = new ListModel
-  list.title = req.body.title
-}) //https://youtu.be/xrxDk1zLKdc?t=244
 
-/* 
+// app.get('/', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
-  MONGODB/MONGOOSE 
-
-*/
+mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+ })
 const db = mongoose.connection;
 
 // Check MongoDB connection
@@ -37,23 +49,3 @@ db.once("open", function() {
 db.on('error', function(err){
   console.log(err)
 })
-
-//Mongoose exports
-let ListModel = require("./models/list");
-const newList = new ListModel({ 
-  _id: new ObjectID(),
-  title: 'Introduction to Mongoose', 
-  user: 'Owner',
-  date: Date(),
-  likes: 1,
-  list: ['This', 'be', 'a', 'list'],
-  url: 'URL will go here eventually'});
-  
-// Connect to MongoDB
-// mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// }).then(db.collection('finished').insertOne(newList));
-
-
-//export {db, ListModel, newList, insertList}
