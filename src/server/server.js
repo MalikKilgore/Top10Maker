@@ -2,14 +2,18 @@ const mongoose = require('mongoose')
 const express = require('express')
 const app = express();
 const bodyParser = require('body-parser')
-//const path = require('path');
+const path = require("path");
 const PORT = 3001;
 const ObjectID = require('mongodb').ObjectID;
 let ListModel = require("./models/list");
 
-//app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
+
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.post("/create",(req, res) => {
   console.log("Request received")
@@ -29,10 +33,6 @@ app.post("/create",(req, res) => {
 app.listen(PORT, function(){
   console.log('Server started on port: ' + PORT)
 })
-
-// app.get('/', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
 
 mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
   useNewUrlParser: true,
