@@ -11,10 +11,10 @@ type Game = {
   cover: string,
   title: string,
   description: string,
-  // user: {
-  //   author: string,
-  //   review: string
-  // }
+  user: {
+    author: string,
+    review: string
+  }
 }
 
 function App(props: any) {
@@ -34,14 +34,13 @@ function App(props: any) {
   function createList(){
     let newArr = [...gameList]
     let json = JSON.stringify(newArr);
-    console.log("THIS IS WHAT THE WRAPPED LIST WILL BE:     "+ json)
     let listDoc = {
       title: "THIS IS A CLIENT DATABASE POST AFTER SERVER HAS BEEN SETUP", 
       user: "THIS IS A CLIENT DATABASE POST AFTER SERVER HAS BEEN SETUP",
       list: json,
       url: "PLEASE WORK"
     }
-    axios.post('http://192.53.164.225/create', listDoc)
+    axios.post('http://top10maker.com/create', listDoc)
   }
 
   function handleDragEndGlobal(oldGlobalIndex: number, newGlobalIndex: number){

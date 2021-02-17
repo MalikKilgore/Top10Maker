@@ -5,14 +5,16 @@ import { CSS } from "@dnd-kit/utilities";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import trash from '../assets/trash-duotone.png'
-//import store, {addGame} from '../store'
-//import connect, { connectAdvanced, useDispatch } from 'react-redux'
 
 type Game = {
   id: number,
   cover: string,
   title: string,
   description: string,
+  user: {
+    author: string,
+    review: string
+  }
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -109,6 +111,10 @@ function ListItem(props: any) {
       cover: game.cover.url,
       title: game.name,
       description: game.summary,
+      user: {
+        author: 'string',
+        review: 'string'
+      }
     }
     
     const gameIndex: number = props.items.indexOf(id)

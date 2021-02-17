@@ -14,14 +14,9 @@ import {
   SortableContext,
   sortableKeyboardCoordinates,
   rectSwappingStrategy,
-  useSortable
 } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import {restrictToVerticalAxis, restrictToWindowEdges,} from '@dnd-kit/modifiers';
+import {restrictToVerticalAxis} from '@dnd-kit/modifiers';
 import plusCircle from '../assets/plus-circle-duotone.png'
-import { useDispatch } from "react-redux";
-//import { useSelector, useDispatch, MapDispatchToProps, MapStateToProps, connect } from 'react-redux'
-//import store, {addGame, Game} from '../store'
 
 function List(props: any) {
   const [items, setItems] = useState([
@@ -44,13 +39,6 @@ function List(props: any) {
       coordinateGetter: sortableKeyboardCoordinates,
     })
   );
-  
-  const { attributes, listeners, setNodeRef, transform } = useSortable({
-    id: "unique-id",
-  });
-  const style = {
-    transform: CSS.Translate.toString(transform),
-  };
 
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
@@ -66,7 +54,6 @@ function List(props: any) {
     }
     return props.handleDragEndGlobal(oldGlobalIndex, newGlobalIndex)
   }
-
 //DnDKit
 
   return (
