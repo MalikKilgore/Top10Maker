@@ -3,12 +3,12 @@ const listSchema = mongoose.Schema;
 
 let listPost = new listSchema({
     _id: String,
+    date: Date,
     title: String,
     user: String,
-    date: Date,
-    likes: Number,
     list: Array,
-    url: String
+    url: String,
+    likes: Number,
 });
 
 let List = module.exports = mongoose.model("listPost", listPost);

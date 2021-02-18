@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../css/ListItem.css";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -62,9 +62,10 @@ const useStyles = makeStyles((theme: Theme) =>
 function ListItem(props: any) {
   //state
   const [search, setSearch] = useState(``);
+  const [userReview, setUserReview] = useState(``)
   const [results, setResults] = useState<any[]>([])
   const [visible, setVisible] = useState(false);
-  const [gameItem, displayGame] = useState({
+  const [gameItem, setGameDisplay] = useState({
     id: undefined,
     cover: undefined,
     title: undefined,
@@ -74,6 +75,7 @@ function ListItem(props: any) {
 
   const classes = useStyles();
   const searchEl = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const userReviewRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   // DndKit
   const {
@@ -93,27 +95,27 @@ function ListItem(props: any) {
   function handleSearch() {
     setVisible(false)
   }
+
+// Once game is clicked, it will populate to the listItem.
   function selectGame(event: any) {
-    // Once game is clicked, it will populate to the listItem.
     const id = props.id
     let index: number = parseInt(event.currentTarget.id)
     let game = results[index]
-    displayGame({
+    setGameDisplay({
       id: game.id,
       cover: game.cover.url,
       title: game.name,
       description: game.summary,
     })
     setVisible(false)
-
     const propGame: Game = { 
       id: game.id,
       cover: game.cover.url,
       title: game.name,
       description: game.summary,
       user: {
-        author: 'string',
-        review: 'string'
+        author: 'GUEST',
+        review: userReview
       }
     }
     
@@ -195,7 +197,10 @@ function ListItem(props: any) {
             </div>
           })}
         </Popper> : null}
-        <input className="itemReview" placeholder="Type out your thoughts on this game!"></input>
+        <input className="itemReview" 
+        placeholder="Type out your thoughts on this game!"
+        ref={userReviewRef}
+        onChange={event => setUserReview(event.target.value)}></input>
       </div>
       <div className="item-Footer">
         <img

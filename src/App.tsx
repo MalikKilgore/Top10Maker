@@ -35,10 +35,10 @@ function App(props: any) {
     let newArr = [...gameList]
     let json = JSON.stringify(newArr);
     let listDoc = {
-      title: "THIS IS A CLIENT DATABASE POST AFTER SERVER HAS BEEN SETUP", 
-      user: "THIS IS A CLIENT DATABASE POST AFTER SERVER HAS BEEN SETUP",
+      title: "Top 10 List Title will go here", 
+      user: "GUEST",
       list: json,
-      url: "PLEASE WORK"
+      url: "Shareable URL"
     }
     axios.post('http://top10maker.com/create', listDoc)
   }
