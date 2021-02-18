@@ -25,6 +25,19 @@ app.post("/create",(req, res) => {
   res.end("Success")  
 })
 
+app.post("/explore",(req, res) => {
+  ListModel.find({likes: 0}, (err, data) => {
+    if(err){
+      console.log(err)
+    } else {
+      console.log(data)
+    }
+  })
+  
+  //console.log(res.json())
+  res.end("Success") 
+})
+
 //MongoDB Local Database connection
 mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
   useNewUrlParser: true,

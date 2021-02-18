@@ -3,6 +3,9 @@
     color: white;
     max-height: 35%;
     border-radius: 10px;
+    width: 30%;
+    margin: 0;
+    padding: 0;
 }
 
 .newURL {
