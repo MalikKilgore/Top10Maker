@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "../css/ListItem.css";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -75,7 +75,6 @@ function ListItem(props: any) {
 
   const classes = useStyles();
   const searchEl = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const userReviewRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   // DndKit
   const {
@@ -92,11 +91,11 @@ function ListItem(props: any) {
   };
   // DndKit
 
-  function handleSearch() {
+  function changeSearchVisibility() {
     setVisible(false)
   }
 
-// Once game is clicked, it will populate to the listItem.
+  // Once game is clicked, it will populate to the listItem.
   function selectGame(event: any) {
     const id = props.id
     let index: number = parseInt(event.currentTarget.id)
@@ -108,7 +107,7 @@ function ListItem(props: any) {
       description: game.summary,
     })
     setVisible(false)
-    const propGame: Game = { 
+    const propGame: Game = {
       id: game.id,
       cover: game.cover.url,
       title: game.name,
@@ -118,14 +117,13 @@ function ListItem(props: any) {
         review: userReview
       }
     }
-    
+
     const gameIndex: number = props.items.indexOf(id)
     props.addGame(gameIndex, propGame)
   }
 
   // FETCH CONFIG BELOW
   async function gameRequest(event: any) {
-    event.preventDefault();
     await setSearch(event.target.value)
     const data = `search "${search}"; fields id,name,cover.url,summary;`
     const request = new Request(
@@ -147,13 +145,9 @@ function ListItem(props: any) {
       });
   }
   // FETCH CONFIG ABOVE
-  function parentMethod() {
+  function dltIndex() {
     const id = props.id
     props.dltIndex(id)
-  }
-  function onChange() {
-    //Will be used to prevent searching while typing.
-    //Later add form and submit function. Use loading spinner while fetching results.
   }
 
   return (
@@ -167,14 +161,21 @@ function ListItem(props: any) {
           {gameItem.title} <br></br>
           {gameItem.description}
         </h1>
-        <input
-          className="itemSearch"
-          placeholder="search for games here..."
-          value={search}
-          ref={searchEl}
-          onChange={gameRequest}
+        <form className="itemSearchForm"
+          onSubmit={event => {
+            event.preventDefault()
+            gameRequest(event)
+          }}
         >
-        </input>
+          <input
+            className="itemSearch"
+            placeholder="search for games here..."
+            value={search}
+            ref={searchEl}
+            onChange={event => setSearch(event.target.value)}
+          >
+          </input>
+        </form>
         {visible ? <Popper
           className={classes.paper}
           id={'popper'}
@@ -184,7 +185,7 @@ function ListItem(props: any) {
           placement="bottom"
           disablePortal={true}
         >
-          <button onClick={handleSearch}>Close Results</button>
+          <button onClick={changeSearchVisibility}>Close Results</button>
           {results.map((games: any, index: number) => {
             return <div className={classes.paperChildren} id={`${index}`} key={index} onClick={selectGame}>
               <img
@@ -197,17 +198,16 @@ function ListItem(props: any) {
             </div>
           })}
         </Popper> : null}
-        <input className="itemReview" 
-        placeholder="Type out your thoughts on this game!"
-        ref={userReviewRef}
-        onChange={event => setUserReview(event.target.value)}></input>
+        <input className="itemReview"
+          placeholder="Type out your thoughts on this game!"
+          onChange={event => setUserReview(event.target.value)}></input>
       </div>
       <div className="item-Footer">
         <img
           className={classes.trash}
           alt="Trash button here"
           src={trash}
-          onClick={parentMethod}></img>
+          onClick={dltIndex}></img>
       </div>
     </div>
   );
