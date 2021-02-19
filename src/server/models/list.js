@@ -9,6 +9,6 @@ let listPost = new listSchema({
     list: Array,
     url: String,
     likes: Number,
-});
+},{collection : 'finished'});
 
 let List = module.exports = mongoose.model("listPost", listPost);

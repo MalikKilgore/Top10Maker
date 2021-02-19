@@ -25,19 +25,6 @@ app.post("/create",(req, res) => {
   res.end("Success")  
 })
 
-app.post("/explore",(req, res) => {
-  await List.find({}, (err, data) => {
-    if(err){
-      console.log(err)
-    } else {
-      console.log(data)
-    }
-  })
-  
-  //console.log(res.json())
-  res.end("Success") 
-})
-
 //MongoDB Local Database connection
 mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
   useNewUrlParser: true,
@@ -54,8 +41,14 @@ let listPost = new listSchema({
   list: Array,
   url: String,
   likes: Number,
-});
+},{collection : 'finished'});
 const List = mongoose.model("listPost", listPost);
+
+app.post("/explore",(req, res) => {
+  await List.find({}).then(console.log(data))
+  //console.log(res.json())
+  res.end("Success") 
+})
 
 //Starts Express server on port 3001
 app.listen(PORT, function(){
