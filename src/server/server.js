@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const path = require("path");
 const PORT = 3001;
 const ObjectID = require('mongodb').ObjectID;
-let ListModel = require("./models/list");
+// let ListModel = require("./models/list");
 
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 
 //Receives POST requests and sends them to the local MongoDB server.
 app.post("/create",(req, res) => {
-  db.collection('finished').insertOne(new ListModel({ 
+  db.collection('finished').insertOne(new List({ 
     _id: new ObjectID(),
     date: new Date(),
     title: req.body.title, 
@@ -26,7 +26,7 @@ app.post("/create",(req, res) => {
 })
 
 app.post("/explore",(req, res) => {
-  ListModel.find({likes: 0}, (err, data) => {
+  await List.find({}, (err, data) => {
     if(err){
       console.log(err)
     } else {
@@ -44,6 +44,18 @@ mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
   useUnifiedTopology: true
  })
 const db = mongoose.connection;
+
+const listSchema = mongoose.Schema;
+let listPost = new listSchema({
+  _id: String,
+  date: Date,
+  title: String,
+  user: String,
+  list: Array,
+  url: String,
+  likes: Number,
+});
+const List = mongoose.model("listPost", listPost);
 
 //Starts Express server on port 3001
 app.listen(PORT, function(){
