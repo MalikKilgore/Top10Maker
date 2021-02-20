@@ -1,11 +1,13 @@
 .explore-Root{
-
+    height: 95vh;
+    width: 100%;
 }
 
 .explore-Main {
     display: grid;
-    grid-template-columns: repeat(1, 5fr);
-    grid-template-rows: repeat(1, 5fr);
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, auto-fit);
+    grid-template-rows: repeat(3, auto-fit);
 }
 
 .completeList {
