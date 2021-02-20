@@ -1,0 +1,16 @@
+.explore-Root{
+
+}
+
+.explore-Main {
+    display: grid;
+    grid-template-columns: repeat(1, 5fr);
+    grid-template-rows: repeat(1, 5fr);
+}
+
+.completeList {
+    background-color: white;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}

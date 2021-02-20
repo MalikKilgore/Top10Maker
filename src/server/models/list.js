@@ -11,4 +11,4 @@ let listPost = new listSchema({
     likes: Number,
 },{collection : 'finished'});
 
-let List = module.exports = mongoose.model("listPost", listPost);
+//let List = module.exports = mongoose.model("listPost", listPost);

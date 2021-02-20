@@ -4,6 +4,7 @@
 .pnp.js
 # /src/assets
 /src/store
+/src/server/models
 
 # testing
 /coverage

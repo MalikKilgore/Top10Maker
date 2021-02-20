@@ -1,3 +1,4 @@
+// IMPORTS
 const mongoose = require('mongoose')
 const express = require('express')
 const app = express();
@@ -5,13 +6,13 @@ const bodyParser = require('body-parser')
 const path = require("path");
 const PORT = 3001;
 const ObjectID = require('mongodb').ObjectID;
-// let ListModel = require("./models/list");
 
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
-//Receives POST requests and sends them to the local MongoDB server.
+/*Receives POST request from Axios. 
+Sends POST request to NginX. NginX config allows /create passthrough and adds user's list to MongoDB*/
 app.post("/create",(req, res) => {
   db.collection('finished').insertOne(new List({ 
     _id: new ObjectID(),
@@ -25,13 +26,14 @@ app.post("/create",(req, res) => {
   res.end("Success")  
 })
 
-//MongoDB Local Database connection
+//MongoDB Local Database connection setup
 mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
   useNewUrlParser: true,
   useUnifiedTopology: true
  })
 const db = mongoose.connection;
 
+//Creates Mongoose Schema/Model for POSTing and GETing from MongoDB
 const listSchema = mongoose.Schema;
 let listPost = new listSchema({
   _id: String,
@@ -41,16 +43,20 @@ let listPost = new listSchema({
   list: Array,
   url: String,
   likes: Number,
-},{collection : 'finished'});
-const List = mongoose.model("listPost", listPost, "finished");
+});
+listPost.set('collection', 'finished')
+const List = mongoose.model("listPost", listPost);
 
-app.get("/explore/lists",(req, res) => {
-  res.status(200).send({
-    response: 'The server received your GET request',
+/*Receives GET request from Axios. 
+Sends GET request to NginX. NginX config allows /explore/lists passthrough and receives list from MongoDB */
+app.get("/explore/lists", (res) => {
+  List.find({}, (err, lists) => {
+    if (err){
+      res.send(err)
+    }
+    console.log("number of lists: " + lists.length)
+    res.json(lists)
   })
-  List.find()
-  //console.log(res.json())
-  res.end("Success") 
 })
 
 //Starts Express server on port 3001
