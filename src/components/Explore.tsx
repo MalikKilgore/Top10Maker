@@ -5,7 +5,7 @@ import axios from 'axios'
 function Explore(){
     function populatePage(){
 
-        axios.post('http://top10maker.com/explore')
+        axios.get('http://top10maker.com/explore/lists')
     }
 
     return (

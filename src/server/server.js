@@ -42,10 +42,13 @@ let listPost = new listSchema({
   url: String,
   likes: Number,
 },{collection : 'finished'});
-const List = mongoose.model("listPost", listPost);
+const List = mongoose.model("listPost", listPost, "finished");
 
-app.post("/explore",(req, res) => {
-  await List.find({}).then(console.log(data))
+app.get("/explore/lists",(req, res) => {
+  res.status(200).send({
+    response: 'The server received your GET request',
+  })
+  List.find()
   //console.log(res.json())
   res.end("Success") 
 })
