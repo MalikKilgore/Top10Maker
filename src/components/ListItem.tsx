@@ -4,7 +4,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
-import '../assets/trash-duotone.png'
+import trash from '../assets/trash-duotone.png'
 
 type Game = {
   id: number,
@@ -206,7 +206,7 @@ function ListItem(props: any) {
         <img
           className={classes.trash}
           alt="Trash button here"
-          src={'../assets/trash-duotone.png'}
+          src={trash}
           onClick={dltIndex}></img>
       </div>
     </div>

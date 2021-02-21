@@ -1,14 +1,14 @@
 import React from 'react'
-import '../css/SharedList.css';
-import plusCircle from '../assets/plus-circle-duotone.png'
+import '../css/Upload.css';
+import upCloud from '../assets/cloud-arrow-up-duotone.png'
 
-function Share(props: any) {
+function Upload(props: any) {
     function createList() {
         props.createList()
     }
     return (
-        <div className="share-Root">
-            <div className="share-Main">
+        <div className="upload-Root">
+            <div className="upload-Main">
                 <input
                     className="username"
                     placeholder="Enter your username here"
@@ -16,7 +16,7 @@ function Share(props: any) {
                 <img
                     className="createBtn"
                     alt="Trash button here"
-                    src={plusCircle}
+                    src={upCloud}
                     onClick={createList}></img> <br></br>
                 <textarea className="newURL" placeholder="Weblink will generate here"></textarea>
             </div>
@@ -25,4 +25,4 @@ function Share(props: any) {
     )
 }
 
-export default Share;
+export default Upload;

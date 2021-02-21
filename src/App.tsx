@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import {Switch} from 'react-router-dom'
 import Navbar from './components/NavBar'
 import List from './components/List'
-import SharedList from './components/SharedList'
+import Upload from './components/Upload'
 import Explore from './components/Explore'
+import ListWebpage from './components/ListWebpage'
 import './css/App.css';
 import { arrayMove } from "@dnd-kit/sortable";
 import axios from 'axios'
@@ -74,11 +76,16 @@ function App(props: any) {
           <Route path="/" exact>
             <List addGame={addGame} dltGame={dltGame} gameList={gameList}
               handleDragEndGlobal={handleDragEndGlobal}></List>
-            <SharedList createList={createList}></SharedList>
+            <Upload createList={createList}></Upload>
           </Route>
           <Route path="/explore">
             <Explore></Explore>
           </Route>
+          
+            <Route path="explore/lists/:id" exact>
+              <ListWebpage></ListWebpage>
+            </Route>
+        
         </main>
       </Router>
     </div>

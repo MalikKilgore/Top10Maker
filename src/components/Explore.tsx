@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import "../css/Explore.css";
 import axios from 'axios';
 
 function Explore() {
     //Stores Received lists in an array
+    //DATA TYPES: post.list, post._id, post.date, post.title, post.user, post.url, post.likes
     const [returnedLists, setRenderLists] = useState([]);
 
     return (
@@ -11,11 +13,19 @@ function Explore() {
             this is the explore page
             <button onClick={populatePage}>Populate Page</button>
             <div className="explore-Main">
-                {returnedLists.map((list: any) => <div key={list._id} className={'completeList'}>
-                    {list.title}
+                {returnedLists.map((post: any) => <Link 
+                key={post._id}
+                id={post._id}
+                className={'completeList'} 
+                to={`/explore/lists/${post._id}`}>
+                    {post.title}
                     <br></br>
-                    {list.date}
-                </div>)}
+                    <h3>Created by: {post.user}</h3>
+                    <br></br>
+                    <h3>Created on: {post.date}</h3> 
+                    <br></br>
+                    
+                </Link>)}
             </div>
         </div>
     )
