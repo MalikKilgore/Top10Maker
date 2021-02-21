@@ -49,12 +49,11 @@ const List = mongoose.model("listPost", listPost);
 
 /*Receives GET request from Axios. 
 Sends GET request to NginX. NginX config allows /explore/lists passthrough and receives list from MongoDB */
-app.get("/explore/lists", (res) => {
+app.get("/explore/lists", (req, res) => {
   List.find({}, (err, lists) => {
     if (err){
       res.send(err)
     }
-    console.log("number of lists: " + lists.length)
     res.json(lists)
   })
 })
