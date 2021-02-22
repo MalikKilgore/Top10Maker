@@ -5,9 +5,9 @@
 
 .explore-Main {
     display: grid;
-    grid-auto-flow: row;
-    grid-template-columns: repeat(3, auto-fit);
-    grid-template-rows: repeat(3, auto-fit);
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, 20rem);
+    overflow-y: scroll;
 }
 
 .completeList {

@@ -12,6 +12,9 @@ function ListWebpage(props:any) {
             This is a list webpage with id of {id}
         </div>
     )
+    function populateWebpage(){
+        
+    }
 }
 
 export default ListWebpage

@@ -78,11 +78,11 @@ function App(props: any) {
               handleDragEndGlobal={handleDragEndGlobal}></List>
             <Upload createList={createList}></Upload>
           </Route>
-          <Route path="/explore">
+          <Route path="/explore" exact>
             <Explore></Explore>
           </Route>
           
-            <Route path="explore/lists/:id" exact>
+            <Route path="/explore/lists/:id" exact>
               <ListWebpage></ListWebpage>
             </Route>
         

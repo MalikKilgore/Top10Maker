@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import "../css/Explore.css";
 import axios from 'axios';
 
@@ -7,6 +7,8 @@ function Explore() {
     //Stores Received lists in an array
     //DATA TYPES: post.list, post._id, post.date, post.title, post.user, post.url, post.likes
     const [returnedLists, setRenderLists] = useState([]);
+
+    const history = useHistory();
 
     return (
         <div className="explore-Root">
@@ -16,7 +18,8 @@ function Explore() {
                 {returnedLists.map((post: any) => <Link 
                 key={post._id}
                 id={post._id}
-                className={'completeList'} 
+                className={'completeList'}
+                //onClick={loadWebpage}
                 to={`/explore/lists/${post._id}`}>
                     {post.title}
                     <br></br>
@@ -35,6 +38,15 @@ function Explore() {
             const array = response.data
             setRenderLists(array)
         })
+    }
+    function loadWebpage(){
+        axios.get('http://top10maker.com/explore/lists/:id').then((response) => {
+            //Response is an array of objects. The Objects are individual lists
+            const webpage = response.data
+            console.log(webpage)
+            history.push(`/explore/lists/${webpage._id}`)
+        })
+        
     }
 }
 

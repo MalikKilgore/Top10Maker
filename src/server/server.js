@@ -58,6 +58,17 @@ app.get("/explore/lists", (req, res) => {
   })
 })
 
+// Searches for List by id, then returns the list object and it's details, so Router can populate webpage
+app.get("/explore/lists/:id", (req, res) => {
+  const id = req.params.id
+  List.findById(id, (err, list) => {
+    if (err){
+      res.send(err)
+    }
+    res.json(list)
+  })
+})
+
 //Starts Express server on port 3001
 app.listen(PORT, function(){
   console.log('Server started on port: ' + PORT)
