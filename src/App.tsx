@@ -81,7 +81,7 @@ function App(props: any) {
             <Explore></Explore>
           </Route>
           
-            <Route path="/lists/:id">
+            <Route path="/list/:id">
               <ListWebpage></ListWebpage>
             </Route>
         </main>
