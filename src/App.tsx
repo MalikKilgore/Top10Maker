@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import {Switch} from 'react-router-dom'
 import Navbar from './components/NavBar'
 import List from './components/List'
 import Upload from './components/Upload'
@@ -78,11 +77,11 @@ function App(props: any) {
               handleDragEndGlobal={handleDragEndGlobal}></List>
             <Upload createList={createList}></Upload>
           </Route>
-          <Route path="/explore" exact>
+          <Route path="/explore">
             <Explore></Explore>
           </Route>
           
-            <Route path="/explore/lists/:id" exact>
+            <Route path="/lists/:id">
               <ListWebpage></ListWebpage>
             </Route>
         </main>

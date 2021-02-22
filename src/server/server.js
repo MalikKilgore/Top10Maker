@@ -49,7 +49,7 @@ const List = mongoose.model("listPost", listPost);
 
 /*Receives GET request from Axios. 
 Sends GET request to NginX. NginX config allows /explore/lists passthrough and receives list from MongoDB */
-app.get("/explore/lists", (req, res) => {
+app.get("/explore", (req, res) => {
   List.find({}, (err, lists) => {
     if (err){
       res.send(err)
@@ -59,7 +59,7 @@ app.get("/explore/lists", (req, res) => {
 })
 
 // Searches for List by id, then returns the list object and it's details, so Router can populate webpage
-app.get("/explore/lists/:id", (req, res) => {
+app.get("/lists/:id", (req, res) => {
   const id = req.params.id
   List.findById(id, (err, list) => {
     if (err){

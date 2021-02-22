@@ -20,7 +20,7 @@ function ListWebpage(props:any) {
         </div>
     )
     function fetchWebpageData(){
-        axios.get(`http://top10maker.com/explore/lists/${id}`).then((response) => {
+        axios.get(`http://top10maker.com/lists/${id}`).then((response) => {
             //Response is an object containing list information
             const webpage = response.data
             console.log(webpage)

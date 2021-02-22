@@ -21,7 +21,7 @@ function Explore(props:any) {
                 id={post._id}
                 className={'completeList'}
                 to={`/explore/lists/${post._id}`}>
-                    {post.title}
+                    <h1>{post.title}</h1>
                     <br></br>
                     <h3>Created by: {post.user}</h3>
                     <br></br>
@@ -33,7 +33,7 @@ function Explore(props:any) {
         </div>
     )
     function populatePage() {
-        axios.get('http://top10maker.com/explore/lists').then((response) => {
+        axios.get('http://top10maker.com/explore').then((response) => {
             //Response is an array of objects. The Objects are individual lists
             const array = response.data
             setRenderLists(array)
