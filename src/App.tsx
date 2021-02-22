@@ -85,7 +85,6 @@ function App(props: any) {
             <Route path="/explore/lists/:id" exact>
               <ListWebpage></ListWebpage>
             </Route>
-        
         </main>
       </Router>
     </div>

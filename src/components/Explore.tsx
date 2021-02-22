@@ -39,15 +39,14 @@ function Explore() {
             setRenderLists(array)
         })
     }
-    function loadWebpage(){
-        axios.get('http://top10maker.com/explore/lists/:id').then((response) => {
-            //Response is an array of objects. The Objects are individual lists
-            const webpage = response.data
-            console.log(webpage)
-            history.push(`/explore/lists/${webpage._id}`)
-        })
-        
-    }
+    // function loadWebpage(){
+    //     axios.get('http://top10maker.com/explore/lists/:id').then((response) => {
+    //         //Response is an object containing list information
+    //         const webpage = response.data
+    //         console.log(webpage)
+    //         history.push(`/explore/lists/${webpage._id}`)
+    //     })
+    // }
 }
 
 export default Explore
