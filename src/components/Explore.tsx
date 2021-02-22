@@ -3,23 +3,23 @@ import { Link, useHistory } from 'react-router-dom'
 import "../css/Explore.css";
 import axios from 'axios';
 
-function Explore() {
+function Explore(props:any) {
     //Stores Received lists in an array
     //DATA TYPES: post.list, post._id, post.date, post.title, post.user, post.url, post.likes
-    const [returnedLists, setRenderLists] = useState([]);
+    const [returnedLists, setRenderLists] = useState<any[]>([]);
 
-    const history = useHistory();
+    //const history = useHistory();
 
     return (
         <div className="explore-Root">
-            this is the explore page
+            <h3>this is the explore page</h3>
             <button onClick={populatePage}>Populate Page</button>
             <div className="explore-Main">
-                {returnedLists.map((post: any) => <Link 
+                {returnedLists.map((post: any) => (
+                <Link 
                 key={post._id}
                 id={post._id}
                 className={'completeList'}
-                //onClick={loadWebpage}
                 to={`/explore/lists/${post._id}`}>
                     {post.title}
                     <br></br>
@@ -28,7 +28,7 @@ function Explore() {
                     <h3>Created on: {post.date}</h3> 
                     <br></br>
                     
-                </Link>)}
+                </Link>))}
             </div>
         </div>
     )
