@@ -33,17 +33,20 @@ function App(props: any) {
     {},
     {},
   ]);
+  const [username, setUsername] = useState('')
+  const [title, setListTitle] = useState('')
 
   function createList() {
-    let newArr = [...gameList]
-    let json = JSON.stringify(newArr);
-    let listDoc = {
-      title: "Top 10 List Title will go here",
-      user: "GUEST",
-      list: json,
-      url: "Shareable URL"
+    let newList = [...gameList]
+    // let newUsername = username
+    // let newTitle = title
+    // let json = JSON.stringify(newArr);
+    let payload = {
+      title: title,
+      user: username,
+      list: newList,
     }
-    axios.post('http://top10maker.com/create', listDoc)
+    axios.post('http://top10maker.com/create', payload)
   }
 
   function handleDragEndGlobal(oldGlobalIndex: number, newGlobalIndex: number) {
@@ -75,7 +78,7 @@ function App(props: any) {
           <Route path="/" exact>
             <List addGame={addGame} dltGame={dltGame} gameList={gameList}
               handleDragEndGlobal={handleDragEndGlobal}></List>
-            <Upload createList={createList}></Upload>
+            <Upload createList={createList} setUsername={setUsername} setListTitle={setListTitle}></Upload>
           </Route>
           <Route path="/explore">
             <Explore></Explore>

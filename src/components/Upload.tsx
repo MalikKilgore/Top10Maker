@@ -3,6 +3,7 @@ import '../css/Upload.css';
 import upCloud from '../assets/cloud-arrow-up-duotone.png'
 
 function Upload(props: any) {
+
     function createList() {
         props.createList()
     }
@@ -12,7 +13,16 @@ function Upload(props: any) {
                 <input
                     className="username"
                     placeholder="Enter your username here"
-                ></input> <br></br>
+                    onChange={event => props.setUsername(event.target.value)}
+                ></input> 
+                    <br></br>
+                    <br></br>
+                <input
+                    className="title"
+                    placeholder="Enter the title of your list here"
+                    onChange={event => props.setListTitle(event.target.value)}
+                ></input> 
+                    <br></br>
                 <img
                     className="createBtn"
                     alt="Trash button here"

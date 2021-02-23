@@ -20,7 +20,6 @@ app.post("/create",(req, res) => {
     title: req.body.title, 
     user: req.body.user,
     list: req.body.list,
-    url: req.body.url,
     likes: 0,
   }));
   res.end("Success")  
@@ -33,7 +32,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
  })
 const db = mongoose.connection;
 
-//Creates Mongoose Schema/Model for POSTing and GETing from MongoDB
+//Creates Mongoose Schema/Model for POSTing and GETing from MokngoDB
 const listSchema = mongoose.Schema;
 let listPost = new listSchema({
   _id: String,
@@ -41,7 +40,6 @@ let listPost = new listSchema({
   title: String,
   user: String,
   list: Array,
-  url: String,
   likes: Number,
 });
 listPost.set('collection', 'finished')

@@ -7,7 +7,6 @@ let listPost = new listSchema({
     title: String,
     user: String,
     list: Array,
-    url: String,
     likes: Number,
 },{collection : 'finished'});
 
