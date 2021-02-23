@@ -11,53 +11,48 @@ function ListWebpage(props: any) {
     const [date, setCreatedOn] = useState('')
     // useEffect(() => {
     //     fetchWebpageData()
-    // }, listInfo)
+    // }, [])
 
     return (
         <div className="webpage-Root" id={`${id}`}>
             <div className="webpage-Main">
-                <h3>This is a list webpage with id of {id}</h3>
-                <button onClick={fetchWebpageData}>Populate data</button>
-                List info will go here, and will map through an array to populate the webpage.
+                <h3>This web url is {id}</h3>
+                <button onClick={fetchWebpageData}>Load List</button>
+                <br></br>
+                <h1>{title}</h1>
+                <br></br>
+                <h3>Created by: {uploader}</h3>
+                <br></br>
+                <h3>Created on: {date}</h3>
+                <br></br>
+                
                 <div className="webpage-Data">
-                    <h1>{title}</h1>
-                        <br></br>
-                    <h3>Created by: {uploader}</h3>
-                        <br></br>
-                    <h3>Created on: {date}</h3>
-                        <br></br>
 
                     {listInfo.map((list: any) => (
-                        <div className="webpage-Data">
-                            <h1>{list.title}</h1>
+                        <div key={`${list.id}`} id={`${list.id}`} className="listItem-Root">
+                            <img className="listItem-Cover" alt="Video game cover" src={list.cover}></img>
+                            <h1 className="listItem-Title">{list.title}</h1>
+                            <h2 className="listItem-Author">Review below written by: {list.user.author}</h2>
+                            <p className="listItem-Review">{list.user.review}</p>
                         </div>))}
 
                 </div>
             </div>
         </div>
     )
-    function parseArray(){
-        //Might do object conversion here with listInfo as well.
-        // const array = [...listInfo]
-        // for (let i = 0; i < array.length; i++){
-        //     let object = array[i]
-
-        // }
-    }
     function fetchWebpageData() {
         axios.get(`http://top10maker.com/lists/${id}`).then((response) => {
             //Response is an object containing list information
             const webpage = response.data
-            const url = webpage._id
+            //const url = webpage._id
+            //const likes = webpage.likes
             const createdOn = webpage.date
             const title = webpage.title
             const uploader = webpage.user
-            const likes = webpage.likes
+            
+            // v This is the array v
             const top10List = webpage.list
-            // for (let i = 0; i < top10List.length; i++){
-            //     let object = top10List[i]
 
-            // }
             console.log(top10List)
             setListInfo(top10List)
             setListTitle(title)

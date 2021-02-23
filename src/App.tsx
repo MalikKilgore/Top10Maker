@@ -76,7 +76,7 @@ function App(props: any) {
         <main className="App-main">
           <Route path="/" exact>
             <List addGame={addGame} dltGame={dltGame} gameList={gameList}
-              handleDragEndGlobal={handleDragEndGlobal}></List>
+              handleDragEndGlobal={handleDragEndGlobal} username={username}></List>
             <Upload createList={createList} setUsername={setUsername} setListTitle={setListTitle}></Upload>
           </Route>
           <Route path="/explore">

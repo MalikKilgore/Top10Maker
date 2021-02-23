@@ -75,7 +75,8 @@ function List(props: any) {
         >
           <SortableContext items={items} strategy={rectSwappingStrategy}>
             {items.map((id) => (
-              <ListItem key={id} id={id} dltIndex={dltIndex} addGame={props.addGame} items={items}/>
+              <ListItem key={id} id={id} dltIndex={dltIndex} addGame={props.addGame} 
+              username={props.username} items={items}/>
             ))}
           </SortableContext>
         </DndContext>

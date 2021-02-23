@@ -113,7 +113,7 @@ function ListItem(props: any) {
       title: game.name,
       description: game.summary,
       user: {
-        author: 'GUEST',
+        author: props.username,
         review: userReview
       }
     }
