@@ -37,8 +37,15 @@ function ListWebpage(props: any) {
         axios.get(`http://top10maker.com/lists/${id}`).then((response) => {
             //Response is an object containing list information
             const webpage = response.data
-            console.log(webpage)
-            setListInfo(webpage)
+            const url = webpage._id
+            const createdOn = webpage.date
+            const title = webpage.title
+            const uploader = webpage.user
+            const likes = webpage.likes
+            const top10List = webpage.list
+
+            console.log(top10List)
+            setListInfo(top10List)
         })
     }
 }

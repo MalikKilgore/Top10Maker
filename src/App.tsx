@@ -53,7 +53,6 @@ function App(props: any) {
     let newArr = [...gameList]
     newArr = arrayMove(newArr, oldGlobalIndex, newGlobalIndex)
     setGames(newArr)
-    console.log(`JUST MOVED GAMES${gameList}`)
   }
 
   function addGame(gameIndex: number, propGame: Game) {

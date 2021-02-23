@@ -31,7 +31,6 @@ function Upload(props: any) {
                 <textarea className="newURL" placeholder="Weblink will generate here"></textarea>
             </div>
         </div>
-
     )
 }
 
