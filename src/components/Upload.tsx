@@ -13,6 +13,7 @@ function Upload(props: any) {
                 <input
                     className="username"
                     placeholder="Enter your username here"
+                    required
                     onChange={event => props.setUsername(event.target.value)}
                 ></input> 
                     <br></br>
@@ -20,6 +21,7 @@ function Upload(props: any) {
                 <input
                     className="title"
                     placeholder="Enter the title of your list here"
+                    required
                     onChange={event => props.setListTitle(event.target.value)}
                 ></input> 
                     <br></br>

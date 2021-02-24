@@ -7,8 +7,9 @@ function Explore(props:any) {
     //Stores Received lists in an array
     //DATA TYPES: post.list, post._id, post.date, post.title, post.user, post.url, post.likes
     const [returnedLists, setRenderLists] = useState<any[]>([]);
-
-    //const history = useHistory();
+    // useEffect(() => {
+    //     populatePage()
+    // }, [])
 
     return (
         <div className="explore-Root">
@@ -39,14 +40,6 @@ function Explore(props:any) {
             setRenderLists(array)
         })
     }
-    // function loadWebpage(){
-    //     axios.get('http://top10maker.com/explore/lists/:id').then((response) => {
-    //         //Response is an object containing list information
-    //         const webpage = response.data
-    //         console.log(webpage)
-    //         history.push(`/explore/lists/${webpage._id}`)
-    //     })
-    // }
 }
 
 export default Explore

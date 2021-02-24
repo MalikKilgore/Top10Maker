@@ -2,7 +2,7 @@
     height: 95vh;
     width: 100%;
 }
-h3 {
+.completeList h3 {
     font-size: 25px;
     color: #ffffff;
 }
@@ -20,7 +20,7 @@ h3 {
     margin: 5px;
     cursor: pointer;
 }
-button {
+.explore-Root button {
     padding: 5px 15px;
 	margin: 0.5em;
 	background: #2359be;

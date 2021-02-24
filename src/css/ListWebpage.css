@@ -3,6 +3,14 @@
     height: 95vh;
     width: 100%;
 }
+h1 .webpage-Main {
+    color: black;
+    
+}
+h3 .webpage-Main {
+    color: black;
+}
+
 .webpage-Data {
     display: grid;
     background-color: rgb(54, 75, 145);

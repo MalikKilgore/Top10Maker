@@ -1,35 +1,50 @@
 // IMPORTS
-const mongoose = require('mongoose')
-const express = require('express')
+const mongoose = require("mongoose");
+const express = require("express");
 const app = express();
-const bodyParser = require('body-parser')
+const bodyParser = require("body-parser");
 const path = require("path");
 const PORT = 3001;
-const ObjectID = require('mongodb').ObjectID;
+const ObjectID = require("mongodb").ObjectID;
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, "build")));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 /*Receives POST request from Axios. 
 Sends POST request to NginX. NginX config allows /create passthrough and adds user's list to MongoDB*/
-app.post("/create",(req, res) => {
-  db.collection('finished').insertOne(new List({ 
-    _id: new ObjectID(),
-    date: new Date(),
-    title: req.body.title, 
-    user: req.body.user,
-    list: req.body.list,
-    likes: 0,
-  }));
-  res.end("Success")  
-})
+app.post("/create", (req, res) => {
+  const reqTitle = req.body.title;
+  const reqUsername = req.body.user;
+
+  db.collection("finished").insertOne(
+    new List({
+      _id: new ObjectID(),
+      date: new Date(),
+      title: req.body.title,
+      user: req.body.user,
+      list: req.body.list,
+      likes: 0,
+    })
+  );
+
+  List.findOne(
+    { title: { reqTitle }, user: { reqUsername } },
+    (err, webURL) => {
+      if (err) {
+        res.send(err);
+      }
+      console.log("Success! Sending list URL: " + webURL._id);
+      res.send(webURL._id);
+    }
+  );
+});
 
 //MongoDB Local Database connection setup
 mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
   useNewUrlParser: true,
-  useUnifiedTopology: true
- })
+  useUnifiedTopology: true,
+});
 const db = mongoose.connection;
 
 //Creates Mongoose Schema/Model for POSTing and GETing from MokngoDB
@@ -42,42 +57,57 @@ let listPost = new listSchema({
   list: Array,
   likes: Number,
 });
-listPost.set('collection', 'finished')
+listPost.set("collection", "finished");
 const List = mongoose.model("listPost", listPost);
 
 /*Receives GET request from Axios. 
 Sends GET request to NginX. NginX config allows /explore/lists passthrough and receives list from MongoDB */
 app.get("/search", (req, res) => {
   List.find({}, (err, lists) => {
-    if (err){
-      res.send(err)
+    if (err) {
+      res.send(err);
     }
-    res.json(lists)
-  })
-})
+    res.json(lists);
+  });
+});
 
 // Searches for List by id, then returns the list object and it's details, so Router can populate webpage
 app.get("/lists/:id", (req, res) => {
-  const id = req.params.id
+  const id = req.params.id;
   List.findById(id, (err, list) => {
-    if (err){
-      res.send(err)
+    if (err) {
+      res.send(err);
     }
-    res.json(list)
-  })
-})
+    res.json(list);
+  });
+});
+
+app.post("/redirect", (req, res) => {
+  const reqTitle = req.body.title;
+  const reqUsername = req.body.user;
+  List.findOne(
+    { title: { reqTitle }, user: { reqUsername } },
+    (err, webURL) => {
+      if (err) {
+        res.send(err);
+      }
+      console.log("Success! Sending list URL: " + webURL._id);
+      res.send(webURL._id);
+    }
+  );
+});
 
 //Starts Express server on port 3001
-app.listen(PORT, function(){
-  console.log('Server started on port: ' + PORT)
-})
+app.listen(PORT, function () {
+  console.log("Server started on port: " + PORT);
+});
 
 // Check MongoDB connection
-db.once("open", function() {
+db.once("open", function () {
   console.log("Connected to MongoDB");
 });
 
 // Check for db errors
-db.on('error', function(err){
-  console.log(err)
-})
+db.on("error", function (err) {
+  console.log(err);
+});

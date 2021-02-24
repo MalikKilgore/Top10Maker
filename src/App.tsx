@@ -46,7 +46,12 @@ function App(props: any) {
       user: username,
       list: newList,
     }
-    axios.post('http://top10maker.com/create', payload)
+
+    axios.post('http://top10maker.com/create', payload).then((response) => {
+      //axios.post(`http://top10maker.com/redirect`, payload)
+      const url = response.data
+      console.log(url)
+    })
   }
 
   function handleDragEndGlobal(oldGlobalIndex: number, newGlobalIndex: number) {
