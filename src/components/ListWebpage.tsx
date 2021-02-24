@@ -32,8 +32,10 @@ function ListWebpage(props: any) {
                         <div key={`${list.id}`} id={`${list.id}`} className="listItem-Root">
                             <img className="listItem-Cover" alt="Video game cover" src={list.cover}></img>
                             <h1 className="listItem-Title">{list.title}</h1>
-                            <h2 className="listItem-Author">Review below written by: {list.user.author}</h2>
-                            <p className="listItem-Review">{list.user.review}</p>
+                            <h2 className="listItem-Author">Organized by: {uploader}</h2>
+                            {/* <h2 className="listItem-Author">Review below written by: {uploader}</h2>
+                            <p className="listItem-Review">{list.user.review}</p> */}
+                            <p className="listItem-Desc">{list.description}</p>
                         </div>))}
 
                 </div>

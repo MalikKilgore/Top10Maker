@@ -48,11 +48,10 @@ function App(props: any) {
     }
 
     axios.post('http://top10maker.com/create', payload).then((response) => {
-      const payload = response.data
-      const url = payload._id
+      const url = response.data
       console.log(url)
       setCreatedURL(url)
-      history.push(`http://top10maker.com/list/${url}`)
+      history.push(`/list/${url}`)
     })
   }
 
@@ -89,7 +88,6 @@ function App(props: any) {
           <Route path="/explore">
             <Explore></Explore>
           </Route>
-          
             <Route path="/list/:id">
               <ListWebpage></ListWebpage>
             </Route>

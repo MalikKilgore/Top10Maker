@@ -63,6 +63,7 @@ function ListItem(props: any) {
   //state
   const [search, setSearch] = useState('');
   const [userReview, setUserReview] = useState('')
+  const [author, setAuthor] = useState('')
   const [results, setResults] = useState<any[]>([])
   const [visible, setVisible] = useState(false);
   const [gameItem, setGameDisplay] = useState({
@@ -95,7 +96,7 @@ function ListItem(props: any) {
     setVisible(false)
   }
 
-  // Once game is clicked, it will populate to the listItem.
+  // Once game is clicked, it will populate its info to the listItem.
   function selectGame(event: any) {
     const id = props.id
     let index: number = parseInt(event.currentTarget.id)
@@ -107,6 +108,8 @@ function ListItem(props: any) {
       description: game.summary,
     })
     setVisible(false)
+    console.log(props.username)
+    setAuthor(props.username)
     const propGame: Game = {
       id: game.id,
       cover: game.cover.url,
@@ -145,6 +148,7 @@ function ListItem(props: any) {
       });
   }
   // FETCH CONFIG ABOVE
+  
   function dltIndex() {
     const id = props.id
     props.dltIndex(id)
