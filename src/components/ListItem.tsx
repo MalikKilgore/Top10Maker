@@ -61,8 +61,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function ListItem(props: any) {
   //state
-  const [search, setSearch] = useState(``);
-  const [userReview, setUserReview] = useState(``)
+  const [search, setSearch] = useState('');
+  const [userReview, setUserReview] = useState('')
   const [results, setResults] = useState<any[]>([])
   const [visible, setVisible] = useState(false);
   const [gameItem, setGameDisplay] = useState({

@@ -28,16 +28,14 @@ app.post("/create", (req, res) => {
     })
   );
 
-  List.findOne(
-    { title: { reqTitle }, user: { reqUsername } },
-    (err, webURL) => {
-      if (err) {
-        res.send(err);
-      }
-      console.log("Success! Sending list URL: " + webURL._id);
-      res.send(webURL._id);
+  List.findOne({ title: reqTitle, user: reqUsername }).exec((err, webURL) => {
+    if (err) {
+      console.log(err)
+      res.send(err);
     }
-  );
+    console.log("Success! Sending list URL: " + webURL);
+    res.send(webURL);
+  });
 });
 
 //MongoDB Local Database connection setup
