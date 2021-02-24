@@ -41,9 +41,6 @@ function App(props: any) {
 
   function createList() {
     let newList = [...gameList]
-    // let newUsername = username
-    // let newTitle = title
-    // let json = JSON.stringify(newArr);
     let payload = {
       title: title,
       user: username,
@@ -79,7 +76,7 @@ function App(props: any) {
 
   return (
     <div className="App">
-      <Router>
+    
         <header className="App-header">
           <Navbar></Navbar>
         </header>
@@ -97,7 +94,7 @@ function App(props: any) {
               <ListWebpage></ListWebpage>
             </Route>
         </main>
-      </Router>
+      
     </div>
   );
 }
