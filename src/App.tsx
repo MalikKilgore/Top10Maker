@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import Navbar from './components/NavBar'
 import List from './components/List'
 import Upload from './components/Upload'
@@ -21,6 +22,7 @@ type Game = {
 }
 
 function App(props: any) {
+  const history = useHistory()
   const [gameList, setGames] = useState([
     {},
     {},
@@ -35,6 +37,7 @@ function App(props: any) {
   ]);
   const [username, setUsername] = useState('')
   const [title, setListTitle] = useState('')
+  const [createdURL, setCreatedURL] = useState('')
 
   function createList() {
     let newList = [...gameList]
@@ -48,9 +51,11 @@ function App(props: any) {
     }
 
     axios.post('http://top10maker.com/create', payload).then((response) => {
-      //axios.post(`http://top10maker.com/redirect`, payload)
-      const url = response.data
+      const payload = response.data
+      const url = payload._id
       console.log(url)
+      setCreatedURL(url)
+      history.push(`http://top10maker.com/list/${url}`)
     })
   }
 

@@ -80,21 +80,6 @@ app.get("/lists/:id", (req, res) => {
   });
 });
 
-app.post("/redirect", (req, res) => {
-  const reqTitle = req.body.title;
-  const reqUsername = req.body.user;
-  List.findOne(
-    { title: { reqTitle }, user: { reqUsername } },
-    (err, webURL) => {
-      if (err) {
-        res.send(err);
-      }
-      console.log("Success! Sending list URL: " + webURL._id);
-      res.send(webURL._id);
-    }
-  );
-});
-
 //Starts Express server on port 3001
 app.listen(PORT, function () {
   console.log("Server started on port: " + PORT);
