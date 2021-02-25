@@ -14,7 +14,6 @@ function Explore(props: any) {
     return (
         <div className="explore-Root">
             <h3>this is the explore page</h3>
-            <button onClick={populatePage}>Populate Page</button>
             <div className="explore-Main">
                 {returnedLists.map((post: any) => (
                     <Link

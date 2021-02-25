@@ -17,7 +17,6 @@ function ListWebpage(props: any) {
         <div className="webpage-Root" id={`${id}`}>
             <div className="webpage-Main">
                 <h3>This web url is {id}</h3>
-                {/* <button onClick={fetchWebpageData}>Load List</button> */}
                 <br></br>
                 <h1>{title}</h1>
                 <br></br>
@@ -30,7 +29,8 @@ function ListWebpage(props: any) {
 
                     {listInfo.map((listitem: any) => (
                         <div key={`${listitem.id}`} id={`${listitem.id}`} className="listItem-Root">
-                            <img className="listItem-Cover" alt="Video game cover" src={listitem.cover}></img>
+                            <img className="listItem-Cover" alt="Video game cover" 
+                            src={listitem.cover.replace('t_thumb', 't_cover_big_2x')}></img>
                             <h1 className="listItem-Title">{listitem.title}</h1>
 
                             {/* 

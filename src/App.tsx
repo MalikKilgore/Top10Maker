@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import Navbar from './components/NavBar'
 import List from './components/List'
 import Upload from './components/Upload'
@@ -50,8 +50,8 @@ function App(props: any) {
     axios.post('http://top10maker.com/create', payload).then((response) => {
       const object = response.data
       const url = object._id
-      console.log(object)
-      console.log(`The URL for this list is: ${url}`)
+
+      console.log(`The full url for this list is: http://top10maker.com/list/${url}`)
       setCreatedURL(url)
       history.push(`/list/${url}`)
     })
@@ -77,24 +77,23 @@ function App(props: any) {
 
   return (
     <div className="App">
-    
-        <header className="App-header">
-          <Navbar></Navbar>
-        </header>
-        <main className="App-main">
-          <Route path="/" exact>
-            <List addGame={addGame} dltGame={dltGame} gameList={gameList}
-              handleDragEndGlobal={handleDragEndGlobal} username={username}></List>
-            <Upload createList={createList} setUsername={setUsername} setListTitle={setListTitle}></Upload>
-          </Route>
-          <Route path="/explore">
-            <Explore></Explore>
-          </Route>
-            <Route path="/list/:id">
-              <ListWebpage></ListWebpage>
-            </Route>
-        </main>
-      
+      <header className="App-header">
+        <Navbar></Navbar>
+      </header>
+      <main className="App-main">
+        <Route path="/" exact>
+          <List addGame={addGame} dltGame={dltGame} gameList={gameList}
+            handleDragEndGlobal={handleDragEndGlobal} username={username}></List>
+          <Upload createList={createList} setUsername={setUsername} setListTitle={setListTitle}></Upload>
+        </Route>
+        <Route path="/explore">
+          <Explore></Explore>
+        </Route>
+        <Route path="/list/:id">
+          <ListWebpage></ListWebpage>
+        </Route>
+      </main>
+
     </div>
   );
 }

@@ -15,7 +15,7 @@ import {
   sortableKeyboardCoordinates,
   rectSwappingStrategy,
 } from "@dnd-kit/sortable";
-import {restrictToVerticalAxis} from '@dnd-kit/modifiers';
+import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import plusCircle from '../assets/plus-circle-duotone.png'
 
 function List(props: any) {
@@ -32,7 +32,7 @@ function List(props: any) {
     "9",
   ]);
 
-//DnDKit
+  //DnDKit
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -47,14 +47,14 @@ function List(props: any) {
 
     if (active.id !== over.id) {
       setItems((items) => {
-         const oldIndex: number = items.indexOf(active.id);
-         const newIndex: number = items.indexOf(over.id);
+        const oldIndex: number = items.indexOf(active.id);
+        const newIndex: number = items.indexOf(over.id);
         return arrayMove(items, oldIndex, newIndex);
       });
     }
     return props.handleDragEndGlobal(oldGlobalIndex, newGlobalIndex)
   }
-//DnDKit
+  //DnDKit
 
   return (
     <div className="list-Root">
@@ -75,8 +75,8 @@ function List(props: any) {
         >
           <SortableContext items={items} strategy={rectSwappingStrategy}>
             {items.map((id) => (
-              <ListItem key={id} id={id} dltIndex={dltIndex} addGame={props.addGame} 
-              username={props.username} items={items}/>
+              <ListItem key={id} id={id} dltIndex={dltIndex} addGame={props.addGame}
+                username={props.username} items={items} />
             ))}
           </SortableContext>
         </DndContext>

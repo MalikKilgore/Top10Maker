@@ -25,12 +25,12 @@ function Upload(props: any) {
                     onChange={event => props.setListTitle(event.target.value)}
                 ></input> 
                     <br></br>
+                    <h1>Create List</h1>
                 <img
                     className="createBtn"
                     alt="Trash button here"
                     src={upCloud}
                     onClick={createList}></img> <br></br>
-                <textarea className="newURL" placeholder="Weblink will generate here"></textarea>
             </div>
         </div>
     )

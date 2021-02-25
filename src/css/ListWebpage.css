@@ -3,6 +3,10 @@
     height: 95vh;
     width: 100%;
 }
+/* .webpage-Main {
+    display: flex;
+    justify-content: center;
+} */
 h1 .webpage-Main {
     color: black;
     
@@ -17,7 +21,6 @@ h3 .webpage-Main {
     overflow-y: scroll;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(10, 1fr);
-
 }
 .listItem-Root {
     background-color: grey;
@@ -48,6 +51,7 @@ h3 .webpage-Main {
     grid-area: 3 / 4 / 4 / 9;
     background-color: rgb(240, 213, 140);
     cursor: text;
+    
 } 
 
  .listItem-Review {
