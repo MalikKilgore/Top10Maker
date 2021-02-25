@@ -48,8 +48,10 @@ function App(props: any) {
     }
 
     axios.post('http://top10maker.com/create', payload).then((response) => {
-      const url = response.data
-      console.log(url)
+      const object = response.data
+      const url = object._id
+      console.log(object)
+      console.log(`The URL for this list is: ${url}`)
       setCreatedURL(url)
       history.push(`/list/${url}`)
     })

@@ -53,3 +53,9 @@ h3 .webpage-Main {
     background-color: rgb(240, 140, 235);
     cursor: text;
 }
+.listItem-Desc {
+    grid-area: 4 / 4 / 9 / 9;
+    overflow-y: scroll;
+    background-color: rgb(240, 140, 235);
+    cursor: text;
+}
