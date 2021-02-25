@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import '../css/ListWebpage.css'
 import axios from 'axios';
@@ -9,15 +9,15 @@ function ListWebpage(props: any) {
     const [uploader, setUploader] = useState('')
     const [title, setListTitle] = useState('')
     const [date, setCreatedOn] = useState('')
-    // useEffect(() => {
-    //     fetchWebpageData()
-    // }, [])
+    useEffect(() => {
+        fetchWebpageData()
+    }, [])
 
     return (
         <div className="webpage-Root" id={`${id}`}>
             <div className="webpage-Main">
                 <h3>This web url is {id}</h3>
-                <button onClick={fetchWebpageData}>Load List</button>
+                {/* <button onClick={fetchWebpageData}>Load List</button> */}
                 <br></br>
                 <h1>{title}</h1>
                 <br></br>
@@ -25,17 +25,20 @@ function ListWebpage(props: any) {
                 <br></br>
                 <h3>Created on: {date}</h3>
                 <br></br>
-                
+
                 <div className="webpage-Data">
 
-                    {listInfo.map((list: any) => (
-                        <div key={`${list.id}`} id={`${list.id}`} className="listItem-Root">
-                            <img className="listItem-Cover" alt="Video game cover" src={list.cover}></img>
-                            <h1 className="listItem-Title">{list.title}</h1>
+                    {listInfo.map((listitem: any) => (
+                        <div key={`${listitem.id}`} id={`${listitem.id}`} className="listItem-Root">
+                            <img className="listItem-Cover" alt="Video game cover" src={listitem.cover}></img>
+                            <h1 className="listItem-Title">{listitem.title}</h1>
+
+                            {/* 
                             <h2 className="listItem-Author">Organized by: {uploader}</h2>
-                            {/* <h2 className="listItem-Author">Review below written by: {uploader}</h2>
-                            <p className="listItem-Review">{list.user.review}</p> */}
-                            <p className="listItem-Desc">{list.description}</p>
+                            <h2 className="listItem-Author">Review below written by: {uploader}</h2>
+                            <p className="listItem-Review">{list.user.review}</p> 
+                            */}
+                            <p className="listItem-Desc">{listitem.description}</p>
                         </div>))}
 
                 </div>
@@ -51,7 +54,7 @@ function ListWebpage(props: any) {
             const createdOn = webpage.date
             const title = webpage.title
             const uploader = webpage.user
-            
+
             // v This is the array v
             const top10List = webpage.list
 

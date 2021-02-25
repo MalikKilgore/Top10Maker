@@ -15,7 +15,7 @@
 }
 .item-Main {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
     grid-column-gap: 5px;
     grid-row-gap: 5px;
@@ -25,18 +25,23 @@
     width: 100%;
 }
 .itemImage { 
-    grid-area: 1 / 1 / 6 / 4;
+    grid-area: 1 / 1 / 9 / 4;
     background-color: khaki;
     height: 100%;
     width: 100%;
 }
 .itemTitle { 
-    grid-area: 2 / 4 / 6 / 8;
+    grid-area: 2 / 4 / 3 / 9;
     background-color: rgb(143, 240, 140);
+    overflow-y: hidden;
+}
+.itemDesc {
+    grid-area: 3 / 4 / 9 / 9;
+    background-color: rgb(240, 140, 235);
     overflow-y: scroll;
 }
 .itemSearchForm {
-    grid-area: 1 / 4 / 2 / 8;
+    grid-area: 1 / 4 / 2 / 9;
     height: 100%;
     width: 100%;
     background-color: rgb(140, 195, 240);
@@ -48,8 +53,8 @@
     background-color: rgb(140, 195, 240);
     cursor: text;
 }
-.itemReview { 
+/* .itemReview { 
     grid-area: 6 / 1 / 9 / 8;
     background-color: rgb(240, 140, 235);
     cursor: text;
-}
+} */

@@ -21,7 +21,7 @@ h3 .webpage-Main {
 }
 .listItem-Root {
     background-color: grey;
-    height: fit-content;
+    height: 20rem;
     width: 100%;
     margin-top: 2.5px;
     margin-bottom: 2.5px;
@@ -36,25 +36,28 @@ h3 .webpage-Main {
     grid-area: 1 / 1 / 9 / 4;
     background-color: rgb(240, 147, 140);
     cursor: pointer;
+    height: 100%;
+    width: 100%;
 }
 .listItem-Title {
     grid-area: 1 / 4 / 3 / 9;
     background-color: rgb(140, 195, 240);
     cursor: text;
 }
-.listItem-Author {
+/* .listItem-Author {
     grid-area: 3 / 4 / 4 / 9;
     background-color: rgb(240, 213, 140);
     cursor: text;
-}
-.listItem-Review {
+} 
+
+ .listItem-Review {
     grid-area: 4 / 4 / 9 / 9;
     overflow-y: scroll;
     background-color: rgb(240, 140, 235);
     cursor: text;
-}
+} */
 .listItem-Desc {
-    grid-area: 4 / 4 / 9 / 9;
+    grid-area: 3 / 4 / 9 / 9;
     overflow-y: scroll;
     background-color: rgb(240, 140, 235);
     cursor: text;

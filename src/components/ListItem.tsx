@@ -101,9 +101,13 @@ function ListItem(props: any) {
     const id = props.id
     let index: number = parseInt(event.currentTarget.id)
     let game = results[index]
+
+    let oldCover = game.cover.url
+    let hiResCover = oldCover.replace('t_thumb', 't_cover_big_2x')
+    
     setGameDisplay({
       id: game.id,
-      cover: game.cover.url,
+      cover: hiResCover,
       title: game.name,
       description: game.summary,
     })
@@ -161,10 +165,12 @@ function ListItem(props: any) {
       </div>
       <div className="item-Main">
         <img className="itemImage" alt="Video game cover" src={gameItem.cover}></img>
-        <h1 className="itemTitle" placeholder="The title will go here...">
-          {gameItem.title} <br></br>
-          {gameItem.description}
+        <h1 className="itemTitle" placeholder="The title will load here.">
+          {gameItem.title}
         </h1>
+        <p className="itemDesc" placeholder="The description will load here."> 
+          {gameItem.description}
+        </p>
         <form className="itemSearchForm"
           onSubmit={event => {
             event.preventDefault()
@@ -202,9 +208,9 @@ function ListItem(props: any) {
             </div>
           })}
         </Popper> : null}
-        <input className="itemReview"
+        {/* <input className="itemReview"
           placeholder="Type out your thoughts on this game!"
-          onChange={event => setUserReview(event.target.value)}></input>
+          onChange={event => setUserReview(event.target.value)}></input> */}
       </div>
       <div className="item-Footer">
         <img
