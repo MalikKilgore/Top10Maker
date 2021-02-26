@@ -16,13 +16,11 @@ function ListWebpage(props: any) {
     return (
         <div className="webpage-Root" id={`${id}`}>
             <div className="webpage-Main">
-                <h3>This web url is {id}</h3>
+                <h3>Click here to share your list!: <h4 onClick={copyLink}> http://top10maker.com/list/{id}</h4></h3>
                 <br></br>
                 <h1>{title}</h1>
                 <br></br>
-                <h3>Created by: {uploader}</h3>
-                <br></br>
-                <h3>Created on: {date}</h3>
+                <h3>List created by: {uploader}</h3>
                 <br></br>
 
                 <div className="webpage-Data">
@@ -64,6 +62,10 @@ function ListWebpage(props: any) {
             setUploader(uploader)
             setCreatedOn(createdOn)
         })
+    }
+    function copyLink(event: any){
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(event.target.value);
     }
 }
 

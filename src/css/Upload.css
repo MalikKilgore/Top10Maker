@@ -1,17 +1,21 @@
 .upload-Root {
-    background-color: rgb(65, 78, 141);
+    background-color: #293e6d;
     color: white;
+    font-size: 1.4rem;
     max-height: 35%;
     border-radius: 10px;
     width: 30%;
     margin: 0;
     padding: 0;
 }
-/* 
-.username{
 
+.username{
+    background-color: #1b253a;
+    color: white;
+    border-radius: 10px;
 }
 .title{
-
+    background-color: #1b253a;
+    color: white;
+    border-radius: 10px;
 }
-*/

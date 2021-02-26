@@ -1,14 +1,20 @@
 .item-Root {
-    background-color: grey;
+    background-color: #1b253a;
     height: fit-content;
     width: 100%;
     margin-top: 2.5px;
     margin-bottom: 2.5px;
     min-height: 300px;
+    border-radius: 5px;
+    
 }
 .item-Header {
     cursor: grab;
-    background-color: rgb(192, 140, 240);
+    background-color: #394e7c;
+    color: white;
+    font-size: 1.4rem;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 .item-Header:active {
     cursor: grabbing;
@@ -26,35 +32,47 @@
 }
 .itemImage { 
     grid-area: 1 / 1 / 9 / 4;
-    background-color: khaki;
+    background-color: #394e7c;
+    color: white;
+    border-radius: 5px;
     height: 100%;
     width: 100%;
 }
 .itemTitle { 
     grid-area: 2 / 4 / 3 / 9;
-    background-color: rgb(143, 240, 140);
+    background-color: #394e7c;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.4rem;
     overflow-y: hidden;
 }
 .itemDesc {
-    grid-area: 3 / 4 / 9 / 9;
-    background-color: rgb(240, 140, 235);
+    grid-area: 3 / 4 / 7 / 9;
+    background-color: #394e7c;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.1rem;
     overflow-y: scroll;
+    scrollbar-color: grey #1b253a;
 }
 .itemSearchForm {
     grid-area: 1 / 4 / 2 / 9;
     height: 100%;
     width: 100%;
-    background-color: rgb(140, 195, 240);
+    background-color: #394e7c;
+    border-radius: 5px;
     cursor: text;
 }
 .itemSearch {
     height: 100%;
     width: 100%;
-    background-color: rgb(140, 195, 240);
+    background-color: #394e7c;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.4rem;
     cursor: text;
 }
-/* .itemReview { 
-    grid-area: 6 / 1 / 9 / 8;
-    background-color: rgb(240, 140, 235);
-    cursor: text;
-} */
+.item-Delete {
+    grid-area: 7 / 4 / 9 / 9;
+    color: white;
+}

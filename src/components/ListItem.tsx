@@ -104,6 +104,7 @@ function ListItem(props: any) {
 
     let oldCover = game.cover.url
     let hiResCover = oldCover.replace('t_thumb', 't_cover_big_2x')
+    setSearch('')
     
     setGameDisplay({
       id: game.id,
@@ -161,7 +162,7 @@ function ListItem(props: any) {
   return (
     <div className="item-Root" ref={setNodeRef} style={style}>
       <div className="item-Header" {...attributes} {...listeners}>
-        Click here to drag!
+        Click & hold to drag
       </div>
       <div className="item-Main">
         <img className="itemImage" alt="Video game cover" src={gameItem.cover}></img>
@@ -211,14 +212,15 @@ function ListItem(props: any) {
         {/* <input className="itemReview"
           placeholder="Type out your thoughts on this game!"
           onChange={event => setUserReview(event.target.value)}></input> */}
-      </div>
-      <div className="item-Footer">
+        <div className="item-Delete">
         <img
           className={classes.trash}
           alt="Trash button here"
           src={trash}
           onClick={dltIndex}></img>
       </div>
+      </div>
+
     </div>
   );
 }

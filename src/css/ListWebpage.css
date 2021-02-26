@@ -1,18 +1,29 @@
 .webpage-Root{
-    background-color: white;
     height: 95vh;
     width: 100%;
 }
-/* .webpage-Main {
+.webpage-Main {
     display: flex;
     justify-content: center;
-} */
+    background-color: #1b253a;
+    color: white;
+    font-size: 1.4rem;
+} 
 h1 .webpage-Main {
-    color: black;
-    
+    background-color: #1b253a;
+    color: white;
+    font-size: 1.4rem;
 }
 h3 .webpage-Main {
-    color: black;
+    background-color: #1b253a;
+    color: white;
+    font-size: 1.2rem;
+}
+h4 .webpage-Main {
+    color: white;
+    background-color: #1b253a;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
 
 .webpage-Data {
@@ -23,7 +34,7 @@ h3 .webpage-Main {
     grid-template-rows: repeat(10, 1fr);
 }
 .listItem-Root {
-    background-color: grey;
+    background-color: #1b253a;
     height: 20rem;
     width: 100%;
     margin-top: 2.5px;
@@ -34,18 +45,25 @@ h3 .webpage-Main {
     grid-template-rows: repeat(8, 1fr);
     grid-column-gap: 5px;
     grid-row-gap: 5px;
+    border-radius: 5px;
 }
 .listItem-Cover {
     grid-area: 1 / 1 / 9 / 4;
-    background-color: rgb(240, 147, 140);
+    background-color: #394e7c;
+    color: white;
+    font-size: 1.4rem;
     cursor: pointer;
     height: 100%;
     width: 100%;
+    border-radius: 5px;
 }
 .listItem-Title {
     grid-area: 1 / 4 / 3 / 9;
-    background-color: rgb(140, 195, 240);
+    background-color: #394e7c;
+    color: white;
+    font-size: 1.6rem;
     cursor: text;
+    border-radius: 5px;
 }
 /* .listItem-Author {
     grid-area: 3 / 4 / 4 / 9;
@@ -63,6 +81,9 @@ h3 .webpage-Main {
 .listItem-Desc {
     grid-area: 3 / 4 / 9 / 9;
     overflow-y: scroll;
-    background-color: rgb(240, 140, 235);
+    background-color: #394e7c;
+    color: white;
+    font-size: 1.4rem;
     cursor: text;
+    border-radius: 5px;
 }
