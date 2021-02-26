@@ -59,12 +59,7 @@ function List(props: any) {
   return (
     <div className="list-Root">
       <div className="list-Header">
-        <h1>Add Game</h1>
-        <img
-          className="createBtn"
-          alt="Create new game listing button. Icon is a + with a circle around it."
-          src={plusCircle}
-          onClick={addIndex}></img>
+        <button className="addGameBtn" onClick={addIndex}> Add Game</button>
       </div>
       <div className="list-Main">
         <DndContext
@@ -81,7 +76,6 @@ function List(props: any) {
           </SortableContext>
         </DndContext>
       </div>
-      <div className="list-Footer"></div>
     </div>
   );
 

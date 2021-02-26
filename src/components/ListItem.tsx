@@ -21,35 +21,53 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
       border: '1px solid',
+      borderRadius: '5px',
       padding: theme.spacing(1),
       maxHeight: '400px',
       maxWidth: '400px',
+      gridColumnGap: '2px',
       overflowY: 'scroll',
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: `#1b253a`,
     },
     paperChildren: {
       display: 'grid',
+      backgroundColor: '#1b253a',
       gridTemplateColumns: 'repeat(3, 1fr)',
       gridTemplateRows: 'repeat(3, 1fr)',
-      borderBottom: '1px solid',
+      gridColumnGap: '2px',
+      gridRowGap: '2px',
+      borderBottom: '1px solid white',
       padding: theme.spacing(1),
       maxHeight: '160px',
+      cursor: 'pointer'
     },
     paperImg: {
       gridArea: '1 / 1 / 4 / 2',
-      backgroundColor: 'khaki',
-      cursor: 'pointer',
+      backgroundColor: '#394e7c',
+      borderRadius: '5px',
       height: '100%',
       width: '100%'
     },
     paperH1: {
       gridArea: '1 / 2 / 2 / 4',
-      backgroundColor: 'rgb(143, 240, 140)',
+      backgroundColor: '#394e7c',
+      borderRadius: '5px',
+      color: 'white',
+      fontSize: '1.15rem',
     },
     paperH2: {
       gridArea: '2 / 2 / 4 / 4',
-      overflowY: 'scroll',
-      backgroundColor: 'rgb(140, 195, 240)',
+      overflowY: 'hidden',
+      borderRadius: '5px',
+      backgroundColor: '#394e7c',
+      color: 'white',
+      fontSize: '1.1rem',
+    },
+    paperButton: {
+      padding: '5px 15px',
+      margin: '0.5em',
+      border: '0',
+      borderRadius: '5px',
     },
     trash: {
       height: '4em',
@@ -195,7 +213,7 @@ function ListItem(props: any) {
           placement="bottom"
           disablePortal={true}
         >
-          <button onClick={changeSearchVisibility}>Close Results</button>
+          <button className={classes.paperButton} onClick={changeSearchVisibility}>Close Results</button>
           {results.map((games: any, index: number) => {
             return <div className={classes.paperChildren} id={`${index}`} key={index} onClick={selectGame}>
               <img

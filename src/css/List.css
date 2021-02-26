@@ -8,8 +8,7 @@
     width: 70%;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(10, 1fr);
-    background-color: white;
-    border: solid black 1px;
+    background-color: #1b253a;
     overflow-y: scroll;
 }
 .list-Header {
@@ -21,17 +20,35 @@
     font-size: 1.4rem;
 }
 .list-Header img {
-
     font-size: 1rem;
 }
 .createBtn { 
-    height: 4em;
-    width: 4em;
+    padding: 5px 15px;
+	margin: 0.5em;
+	background-color: white;
+    color: black;
+	border: 0;
+	border-radius: 5px;
+	font-size: 25px;
     cursor: pointer;
 }
-.list-Main {
-
+.addGameBtn {
+    padding: 5px 15px;
+	margin: 0.5em;
+	background-color: white;
+    color: black;
+	border: 0;
+	border-radius: 5px;
+	font-size: 25px;
+    cursor: pointer;
 }
-.list-Footer {
-
+/* .username{
+    background-color: #1b253a;
+    color: white;
+    border-radius: 10px;
 }
+.title{
+    background-color: #1b253a;
+    color: white;
+    border-radius: 10px;
+} */

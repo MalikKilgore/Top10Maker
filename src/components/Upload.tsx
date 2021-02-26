@@ -25,12 +25,8 @@ function Upload(props: any) {
                     onChange={event => props.setListTitle(event.target.value)}
                 ></input> 
                     <br></br>
-                    <h1>Create List</h1>
-                <img
-                    className="createBtn"
-                    alt="Trash button here"
-                    src={upCloud}
-                    onClick={createList}></img> <br></br>
+                    <h1></h1>
+                    <button onClick={createList} className="createBtn"> Create/Upload List</button>
             </div>
         </div>
     )

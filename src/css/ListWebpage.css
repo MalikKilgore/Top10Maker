@@ -22,14 +22,15 @@ h3 .webpage-Main {
 }
 .webpage-Main h3 h4{
     color: white;
-    background-color: #1b253a;
+    background-color: #394e7c;
     font-size: 1.2rem;
     cursor: pointer;
 }
 
 .webpage-Data {
     display: grid;
-    background-color: rgb(54, 75, 145);
+    max-width: 70%;
+    background-color: #1b253a;
     overflow-y: scroll;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(10, 1fr);
@@ -53,7 +54,6 @@ h3 .webpage-Main {
     background-color: #394e7c;
     color: white;
     font-size: 1.4rem;
-    cursor: pointer;
     height: 100%;
     width: 100%;
     border-radius: 5px;
