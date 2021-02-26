@@ -113,7 +113,6 @@ function ListItem(props: any) {
       description: game.summary,
     })
     setVisible(false)
-    console.log(props.username)
     setAuthor(props.username)
     const propGame: Game = {
       id: game.id,

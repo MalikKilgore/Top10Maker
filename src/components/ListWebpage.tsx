@@ -56,7 +56,6 @@ function ListWebpage(props: any) {
             // v This is the array v
             const top10List = webpage.list
 
-            console.log(top10List)
             setListInfo(top10List)
             setListTitle(title)
             setUploader(uploader)

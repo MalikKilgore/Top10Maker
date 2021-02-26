@@ -51,7 +51,6 @@ function App(props: any) {
       const object = response.data
       const url = object._id
 
-      console.log(`The full url for this list is: http://top10maker.com/list/${url}`)
       setCreatedURL(url)
       history.push(`/list/${url}`)
     })
