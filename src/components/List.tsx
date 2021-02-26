@@ -32,6 +32,10 @@ function List(props: any) {
     "9",
   ]);
 
+  function createList() {
+    props.createList()
+  }
+
   //DnDKit
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -60,6 +64,19 @@ function List(props: any) {
     <div className="list-Root">
       <div className="list-Header">
         <button className="addGameBtn" onClick={addIndex}> Add Game</button>
+        <input
+          className="username"
+          placeholder="Enter your username here"
+          required
+          onChange={event => props.setUsername(event.target.value)}
+        ></input>
+        <input
+          className="title"
+          placeholder="Enter the title of your list here"
+          required
+          onChange={event => props.setListTitle(event.target.value)}
+        ></input>
+        <button onClick={createList} className="createBtn">Create/Upload List</button>
       </div>
       <div className="list-Main">
         <DndContext

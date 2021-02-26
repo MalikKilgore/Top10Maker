@@ -1,10 +1,9 @@
 .list-Root {
-    margin: 0;
-    padding: 0;
+    margin-left: 15%;
+    margin-right: 15%;
     border-radius: 10px;
     display: grid;
-    height: 95vh;
-    min-width: 400px;
+    height: 91vh;
     width: 70%;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(10, 1fr);
@@ -14,6 +13,8 @@
 .list-Header {
     display: flex;
     flex-direction: row;
+    height: fit-content;
+    min-width: fit-content;
     justify-content: center;
     background-color: #293e6d;
     color: white;
@@ -42,7 +43,7 @@
 	font-size: 25px;
     cursor: pointer;
 }
-/* .username{
+.username{
     background-color: #1b253a;
     color: white;
     border-radius: 10px;
@@ -51,4 +52,4 @@
     background-color: #1b253a;
     color: white;
     border-radius: 10px;
-} */
+}

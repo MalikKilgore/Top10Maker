@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import Navbar from './components/NavBar'
 import List from './components/List'
-import Upload from './components/Upload'
 import Explore from './components/Explore'
 import ListWebpage from './components/ListWebpage'
 import './css/App.css';
@@ -82,8 +81,9 @@ function App(props: any) {
       <main className="App-main">
         <Route path="/" exact>
           <List addGame={addGame} dltGame={dltGame} gameList={gameList}
-            handleDragEndGlobal={handleDragEndGlobal} username={username}></List>
-          <Upload createList={createList} setUsername={setUsername} setListTitle={setListTitle}></Upload>
+            handleDragEndGlobal={handleDragEndGlobal} username={username}
+            setListTitle={setListTitle} setUsername={setUsername}
+            createList={createList}></List>
         </Route>
         <Route path="/explore">
           <Explore></Explore>
