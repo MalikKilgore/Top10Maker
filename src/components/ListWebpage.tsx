@@ -29,7 +29,7 @@ function ListWebpage(props: any) {
                     {listInfo.map((listitem: any) => (
                         <div key={`${listitem.id}`} id={`${listitem.id}`} className="listItem-Root">
                             <img className="listItem-Cover" alt="Video game cover" 
-                            src={listitem.cover.replace('t_thumb', 't_cover_big_2x')}></img>
+                            src={listitem.cover}></img>
                             <h1 className="listItem-Title">{listitem.title}</h1>
 
                             {/* 

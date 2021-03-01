@@ -57,18 +57,11 @@
     font-size: 1.1rem;
     overflow-y: scroll;
 }
-.itemSearchForm {
+
+.itemSearch {
     grid-area: 1 / 4 / 2 / 9;
     height: 100%;
-    width: 100%;
-    background-color: #5BC0BE;
-    color: black;
-    border-radius: 5px;
-    cursor: text;
-}
-.itemSearch {
-    height: 100%;
-    width: 100%;
+    min-width: 100%;
     background-color: #5BC0BE;
     border-radius: 5px;
     color: black;

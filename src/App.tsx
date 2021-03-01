@@ -34,26 +34,27 @@ function App(props: any) {
     {},
     {},
   ]);
-  const [username, setUsername] = useState('')
-  const [title, setListTitle] = useState('')
+  const [username, setUsername] = useState()
+  const [title, setListTitle] = useState()
   const [createdURL, setCreatedURL] = useState('')
 
   function createList() {
     let newList = [...gameList]
-    //if payload.title == undefined....
-    let payload = {
-      title: title,
-      user: username,
-      list: newList,
+    if (title === undefined || username === undefined){
+      return console.log('You must enter both a title and username')
+    } else {
+      let payload = {
+        title: title,
+        user: username,
+        list: newList,
+      }
+      axios.post('http://top10maker.com/create', payload).then((response) => {
+        const object = response.data
+        const url = object._id
+        setCreatedURL(url)
+        history.push(`/list/${url}`)
+      })
     }
-
-    axios.post('http://top10maker.com/create', payload).then((response) => {
-      const object = response.data
-      const url = object._id
-
-      setCreatedURL(url)
-      history.push(`/list/${url}`)
-    })
   }
 
   function handleDragEndGlobal(oldGlobalIndex: number, newGlobalIndex: number) {

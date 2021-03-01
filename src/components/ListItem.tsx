@@ -121,11 +121,18 @@ function ListItem(props: any) {
     const id = props.id
     let index: number = parseInt(event.currentTarget.id)
     let game = results[index]
+    let oldCover
+    let hiResCover
 
-    let oldCover = game.cover.url
-    let hiResCover = oldCover.replace('t_thumb', 't_cover_big_2x')
+    if (game.cover?.url === undefined) {
+      oldCover = 'Could not receive cover'
+      hiResCover = 'Could not receive cover'
+    } else {
+      oldCover = game.cover.url
+      hiResCover = oldCover.replace('t_thumb', 't_cover_big_2x')
+    }
     setSearch('')
-    
+
     setGameDisplay({
       id: game.id,
       cover: hiResCover,
@@ -136,7 +143,7 @@ function ListItem(props: any) {
     setAuthor(props.username)
     const propGame: Game = {
       id: game.id,
-      cover: game.cover.url,
+      cover: hiResCover,
       title: game.name,
       description: game.summary,
       user: {
@@ -151,7 +158,7 @@ function ListItem(props: any) {
 
   // FETCH CONFIG BELOW
   async function gameRequest(event: any) {
-    await setSearch(event.target.value)
+    // await setSearch(event.target.value)
     const data = `search "${search}"; fields id,name,cover.url,summary;`
     const request = new Request(
       "https://mysterious-beach-94424.herokuapp.com/https://oj9aui1qpi.execute-api.us-west-2.amazonaws.com/production/v4/games",
@@ -172,7 +179,7 @@ function ListItem(props: any) {
       });
   }
   // FETCH CONFIG ABOVE
-  
+
   function dltIndex() {
     const id = props.id
     props.dltIndex(id)
@@ -188,24 +195,21 @@ function ListItem(props: any) {
         <h1 className="itemTitle" placeholder="The title will load here.">
           {gameItem.title}
         </h1>
-        <p className="itemDesc" placeholder="The description will load here."> 
+        <p className="itemDesc" placeholder="The description will load here.">
           {gameItem.description}
         </p>
-        <form className="itemSearchForm"
-          onSubmit={event => {
+        <input
+          className="itemSearch"
+          placeholder="search for games here..."
+          value={search}
+          ref={searchEl}
+          onChange={event => {
             event.preventDefault()
+            setSearch(event.currentTarget.value)
             gameRequest(event)
           }}
         >
-          <input
-            className="itemSearch"
-            placeholder="search for games here..."
-            value={search}
-            ref={searchEl}
-            onChange={event => setSearch(event.target.value)}
-          >
-          </input>
-        </form>
+        </input>
         {visible ? <Popper
           className={classes.paper}
           id={'popper'}
@@ -222,7 +226,7 @@ function ListItem(props: any) {
                 className={classes.paperImg}
                 alt="Video game cover"
                 src={(() => {
-                  if (results[index].cover?.url === undefined){
+                  if (results[index].cover?.url === undefined) {
                     return null
                   } else {
                     return games.cover.url
@@ -238,7 +242,7 @@ function ListItem(props: any) {
           placeholder="Type out your thoughts on this game!"
           onChange={event => setUserReview(event.target.value)}></input> */}
         <div className="item-Delete" onClick={dltIndex}>
-        Delete Game
+          Delete Game
       </div>
       </div>
 
