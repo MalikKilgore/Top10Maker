@@ -19,6 +19,8 @@
     color: white;
     font-size: 1.3rem;
     padding: 1.5em;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 .list-Header img {
     font-size: 1rem;

@@ -78,5 +78,7 @@
 .item-Delete {
     grid-area: 7 / 4 / 9 / 9;
     background-color: #5BC0BE;
-    color: white;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
 }

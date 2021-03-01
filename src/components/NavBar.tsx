@@ -5,7 +5,6 @@ import "../css/NavBar.css";
 function Navbar() {
     return (
         <nav className="navbar">
-            <h1>Top10Maker </h1>
             <h4><Link className="navbarLink" to="/">Home</Link></h4>
             <h4><Link className="navbarLink" to="/explore">Explore Lists</Link></h4>
         </nav>

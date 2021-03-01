@@ -24,9 +24,7 @@ function Explore(props: any) {
                         <br></br>
                         <h3>Created by: {post.user}</h3>
                         <br></br>
-                        <h3>Created on: {post.date}</h3>
-                        <br></br>
-
+                        {/* <h3>Created on: {post.date}</h3> */}
                     </Link>))}
             </div>
         </div>

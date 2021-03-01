@@ -40,6 +40,7 @@ function App(props: any) {
 
   function createList() {
     let newList = [...gameList]
+    //if payload.title == undefined....
     let payload = {
       title: title,
       user: username,

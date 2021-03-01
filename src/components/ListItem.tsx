@@ -4,7 +4,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
-import trash from '../assets/trash-duotone.png'
+
 
 type Game = {
   id: number,
@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
     paperImg: {
       gridArea: '1 / 1 / 4 / 2',
       backgroundColor: '#394e7c',
+      color: 'white',
       borderRadius: '5px',
       height: '100%',
       width: '100%'
@@ -84,6 +85,7 @@ function ListItem(props: any) {
   const [author, setAuthor] = useState('')
   const [results, setResults] = useState<any[]>([])
   const [visible, setVisible] = useState(false);
+  const [cover, setCover] = useState(false);
   const [gameItem, setGameDisplay] = useState({
     id: undefined,
     cover: undefined,
@@ -219,7 +221,13 @@ function ListItem(props: any) {
               <img
                 className={classes.paperImg}
                 alt="Video game cover"
-                src={games.cover.url}
+                src={(() => {
+                  if (results[index].cover?.url === undefined){
+                    return null
+                  } else {
+                    return games.cover.url
+                  }
+                })()}
               ></img>
               <h1 className={classes.paperH1}>{games.name}</h1>
               <h2 className={classes.paperH2}>{games.summary}</h2>
@@ -229,12 +237,8 @@ function ListItem(props: any) {
         {/* <input className="itemReview"
           placeholder="Type out your thoughts on this game!"
           onChange={event => setUserReview(event.target.value)}></input> */}
-        <div className="item-Delete">
-        <img
-          className={classes.trash}
-          alt="Trash can icon, deletes this list item when clicked."
-          src={trash}
-          onClick={dltIndex}></img>
+        <div className="item-Delete" onClick={dltIndex}>
+        Delete Game
       </div>
       </div>
 

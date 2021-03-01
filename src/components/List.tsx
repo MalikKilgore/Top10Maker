@@ -16,7 +16,6 @@ import {
   rectSwappingStrategy,
 } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
-import plusCircle from '../assets/plus-circle-duotone.png'
 
 function List(props: any) {
   const [items, setItems] = useState([
@@ -64,6 +63,7 @@ function List(props: any) {
     <div className="list-Root">
       <div className="list-Header">
         <button className="addGameBtn" onClick={addIndex}> Add Game</button>
+        <button onClick={createList} className="createBtn">Create/Upload List</button>
         <input
           className="username"
           placeholder="Your username here"
@@ -76,7 +76,6 @@ function List(props: any) {
           required
           onChange={event => props.setListTitle(event.target.value)}
         ></input>
-        <button onClick={createList} className="createBtn">Create/Upload List</button>
       </div>
       <div className="list-Main">
         <DndContext
