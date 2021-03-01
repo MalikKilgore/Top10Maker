@@ -232,7 +232,7 @@ function ListItem(props: any) {
         <div className="item-Delete">
         <img
           className={classes.trash}
-          alt="Trash button here"
+          alt="Trash can icon, deletes this list item when clicked."
           src={trash}
           onClick={dltIndex}></img>
       </div>

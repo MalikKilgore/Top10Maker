@@ -16,7 +16,7 @@ function ListWebpage(props: any) {
     return (
         <div className="webpage-Root" id={`${id}`}>
             <div className="webpage-Main">
-                <h3>List can be shared at: <h4 className="fullURL" 
+                <h3>Share this list: <h4 className="fullURL" 
                 onClick={copyLink}> http://top10maker.com/list/{id}</h4></h3>
                 <br></br>
                 <h1>{title}</h1>

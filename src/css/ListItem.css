@@ -1,22 +1,23 @@
 .item-Root {
-    background-color: #1b253a;
+    background-color: #1C2541;
     height: fit-content;
     min-width: fit-content;
     max-width: 100%;
-    margin-top: 2.5px;
-    margin-bottom: 2.5px;
+    margin-top: 1em;
+    margin-bottom: 1em;
     min-height: 300px;
     border-radius: 5px;
 }
 .item-Header {
     cursor: grab;
-    background-color: #394e7c;
+    background-color: #3A506B;
     color: white;
     font-size: 1.4rem;
     min-width: fit-content;
     max-width: 100%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    padding: .5em;
 }
 .item-Header:active {
     cursor: grabbing;
@@ -34,7 +35,7 @@
 }
 .itemImage { 
     grid-area: 1 / 1 / 9 / 4;
-    background-color: #394e7c;
+    background-color: #3A506B;
     color: white;
     border-radius: 5px;
     height: 100%;
@@ -42,7 +43,7 @@
 }
 .itemTitle { 
     grid-area: 2 / 4 / 3 / 9;
-    background-color: #394e7c;
+    background-color: #3A506B;
     border-radius: 5px;
     color: white;
     font-size: 1.4rem;
@@ -50,31 +51,32 @@
 }
 .itemDesc {
     grid-area: 3 / 4 / 7 / 9;
-    background-color: #394e7c;
+    background-color: #3A506B;
     border-radius: 5px;
     color: white;
     font-size: 1.1rem;
     overflow-y: scroll;
-    scrollbar-color: grey #1b253a;
 }
 .itemSearchForm {
     grid-area: 1 / 4 / 2 / 9;
     height: 100%;
     width: 100%;
-    background-color: #394e7c;
+    background-color: #5BC0BE;
+    color: black;
     border-radius: 5px;
     cursor: text;
 }
 .itemSearch {
     height: 100%;
     width: 100%;
-    background-color: #394e7c;
+    background-color: #5BC0BE;
     border-radius: 5px;
-    color: white;
+    color: black;
     font-size: 1.4rem;
     cursor: text;
 }
 .item-Delete {
     grid-area: 7 / 4 / 9 / 9;
+    background-color: #5BC0BE;
     color: white;
 }

@@ -14,7 +14,7 @@
   max-height: 100vh;
   width: 100vw;
   max-width: 100vw;
-  background-color: #1e2e4b;
+  background-color: #0b132b;
 }
 
 .App-header {
@@ -23,7 +23,8 @@
 .App-main {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap
+  flex-wrap: nowrap;
+  background-color: #0b132b;
 }
 
 /* width */

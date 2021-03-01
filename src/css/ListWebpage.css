@@ -1,26 +1,28 @@
 .webpage-Root{
     height: 95vh;
     width: 100%;
+    background-color: #0b132b;
 }
 .webpage-Main {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: #1b253a;
+    background-color: #0b132b;
     color: white;
     font-size: 1.4rem;
 } 
 h1 .webpage-Main {
-    background-color: #1b253a;
+    background-color: #0b132b;
     color: white;
     font-size: 1.4rem;
 }
 h3 .webpage-Main {
-    background-color: #1b253a;
+    background-color: #0b132b;
     color: white;
     font-size: 1.2rem;
 }
 .webpage-Main h3 h4{
+    justify-content: center;
     color: white;
     background-color: #394e7c;
     font-size: 1.2rem;
@@ -33,7 +35,7 @@ h3 .webpage-Main {
     margin-left: 15%;
     margin-right: 15%;
     max-width: 70%;
-    background-color: #1b253a;
+    background-color: #0b132b;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(10, 1fr);
     grid-row-gap: 5px;

@@ -66,13 +66,13 @@ function List(props: any) {
         <button className="addGameBtn" onClick={addIndex}> Add Game</button>
         <input
           className="username"
-          placeholder="Enter your username here"
+          placeholder="Your username here"
           required
           onChange={event => props.setUsername(event.target.value)}
         ></input>
         <input
           className="title"
-          placeholder="Enter the title of your list here"
+          placeholder="Title of your list here"
           required
           onChange={event => props.setListTitle(event.target.value)}
         ></input>
