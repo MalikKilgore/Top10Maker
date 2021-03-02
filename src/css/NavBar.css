@@ -18,6 +18,9 @@ h4 {
 	border-radius: 5px;
 	font-size: 25px;
 }
+h4:hover {
+    background-color: #5BC0BE;
+}
 
 h4 .navbarLink {
     text-decoration: none;

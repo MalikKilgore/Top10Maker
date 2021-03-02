@@ -161,7 +161,7 @@ function ListItem(props: any) {
     // await setSearch(event.target.value)
     const data = `search "${search}"; fields id,name,cover.url,summary;`
     const request = new Request(
-      "127.0.0.1:8080/https://oj9aui1qpi.execute-api.us-west-2.amazonaws.com/production/v4/games",
+      "http://localhost:8080/oj9aui1qpi.execute-api.us-west-2.amazonaws.com/production/v4/games",
       {
         method: 'POST',
         body: data
@@ -188,7 +188,7 @@ function ListItem(props: any) {
   return (
     <div className="item-Root" ref={setNodeRef} style={style}>
       <div className="item-Header" {...attributes} {...listeners}>
-        Click & hold to drag
+        Click & hold here to drag
       </div>
       <div className="item-Main">
         <img className="itemImage" alt="Video game cover" src={gameItem.cover}></img>
