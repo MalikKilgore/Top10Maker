@@ -31,12 +31,6 @@ function ListWebpage(props: any) {
                             <img className="listItem-Cover" alt="Video game cover" 
                             src={listitem.cover}></img>
                             <h1 className="listItem-Title">{listitem.title}</h1>
-
-                            {/* 
-                            <h2 className="listItem-Author">Organized by: {uploader}</h2>
-                            <h2 className="listItem-Author">Review below written by: {uploader}</h2>
-                            <p className="listItem-Review">{list.user.review}</p> 
-                            */}
                             <p className="listItem-Desc">{listitem.description}</p>
                         </div>))}
 
@@ -48,8 +42,6 @@ function ListWebpage(props: any) {
         axios.get(`http://top10maker.com/lists/${id}`).then((response) => {
             //Response is an object containing list information
             const webpage = response.data
-            //const url = webpage._id
-            //const likes = webpage.likes
             const createdOn = webpage.date
             const title = webpage.title
             const uploader = webpage.user

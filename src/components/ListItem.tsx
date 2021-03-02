@@ -161,7 +161,7 @@ function ListItem(props: any) {
     // await setSearch(event.target.value)
     const data = `search "${search}"; fields id,name,cover.url,summary;`
     const request = new Request(
-      "https://mysterious-beach-94424.herokuapp.com/https://oj9aui1qpi.execute-api.us-west-2.amazonaws.com/production/v4/games",
+      "127.0.0.1:8080/https://oj9aui1qpi.execute-api.us-west-2.amazonaws.com/production/v4/games",
       {
         method: 'POST',
         body: data
@@ -238,9 +238,6 @@ function ListItem(props: any) {
             </div>
           })}
         </Popper> : null}
-        {/* <input className="itemReview"
-          placeholder="Type out your thoughts on this game!"
-          onChange={event => setUserReview(event.target.value)}></input> */}
         <div className="item-Delete" onClick={dltIndex}>
           Delete Game
       </div>
