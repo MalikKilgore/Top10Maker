@@ -4,6 +4,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
+import axios from "axios";
 
 
 type Game = {
@@ -166,6 +167,7 @@ function ListItem(props: any) {
         method: 'POST',
         body: data
       });
+      
     await fetch(request)
       .then((response) => {
         response.json().then(data => {
