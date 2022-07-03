@@ -12,8 +12,8 @@ RUN npm install
 RUN apt-get update
 RUN apt-get install nano
 
-# Exposes Port 3020 for connection
-EXPOSE 3020
+# Exposes Port 3001 for connection
+EXPOSE 3001
 
 # Starts Express server
-CMD [ "node", "server.js" ]
+CMD [ "npm", "start" ]

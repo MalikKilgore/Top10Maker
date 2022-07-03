@@ -1,6 +1,6 @@
 FROM node
 
-ARG REACT_APP_SERVICES_HOST=/services/m
+ARG REACT_APP_SERVICES_HOST=/express
 # Creates the app directory /home/react_app
 # Copies all files from the root directory, unless ignored by .dockerignore, into /home/react_app
 COPY . /home/react_app

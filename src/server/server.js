@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const path = require("path");
+//const path = require("path");
 const PORT = 3001;
 const ObjectID = require("mongodb").ObjectID;
 
-app.use(express.static(path.join(__dirname, "build")));
+//app.use(express.static(path.join(__dirname, "build")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -39,13 +39,13 @@ app.post("/create", (req, res) => {
 });
 
 //MongoDB Local Database connection setup
-mongoose.connect("mongodb://127.0.0.1:27017/top10lists", {
+mongoose.connect("mongodb://root:temporary@mongo:27017/", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 const db = mongoose.connection;
 
-//Creates Mongoose Schema/Model for POSTing and GETing from MokngoDB
+//Creates Mongoose Schema/Model for POSTing and GETing from MongoDB
 const listSchema = mongoose.Schema;
 let listPost = new listSchema({
   _id: String,
