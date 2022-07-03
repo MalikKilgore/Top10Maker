@@ -107,7 +107,7 @@ function ListItem(props: any) {
     transition,
   } = useSortable({ id: props.id });
 
-  const style = {
+  const style:any = {
     transform: CSS.Transform.toString(transform),
     transition,
   };

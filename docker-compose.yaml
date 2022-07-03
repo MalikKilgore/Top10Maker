@@ -1,0 +1,65 @@
+version: '3.8'
+services:
+  react-top10:
+    restart: always
+    hostname: react-top10
+    build: 
+      dockerfile: Dockerfile
+      context: .
+    # For docker-compose push
+    image: dltmalik/reactapp:latest #CHANGE THIS
+    ports:
+      - 3000:3000
+    networks:
+      - react-top10
+      - express
+  express:
+    restart: always
+    hostname: express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: temporary
+      ME_CONFIG_MONGODB_URL: mongodb://root:temporary@mongo:27017/
+    build: 
+      dockerfile: Dockerfile
+      context: ./src/server
+    # For docker-compose push
+    image: dltmalik/nodesql:latest #CHANGE THIS
+    ports:
+      - 3020:3020
+    networks:
+      - express
+  mongo:
+    restart: always
+    hostname: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: temporary
+    build:
+      dockerfile: Dockerfile
+      context: ./src/nginx #CHANGE THIS
+    # For docker-compose push
+    image: dltmalik/revproxy:latest #CHANGE THIS
+    ports:
+      - 3020:3020
+      - 3021:3021
+    networks:
+      - express
+  nginx:
+    restart: always
+    hostname: nginx
+    build:
+      dockerfile: Dockerfile
+      context: ./src/nginx
+    # For docker-compose push
+    image: dltmalik/revproxy:latest #CHANGE THIS
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - react-top10
+      - express
+
+networks: 
+  react-top10:
+  express:
